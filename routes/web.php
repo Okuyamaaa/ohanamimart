@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
-use App\Http\Controllers\Admin\User;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +29,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 
     Route::get('users', [Admin\UserController::class, 'index'])->name('users.index');
     Route::get('users/{user}', [Admin\UserController::class, 'show'])->name('users.show');
+
+    Route::resource('products', Admin\ProductController::class);
+    Route::resource('categories', CategoryController::class);
 });
