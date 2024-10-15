@@ -32,4 +32,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 
     Route::resource('products', Admin\ProductController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('company', Admin\CompanyController::class);
+
+    Route::resource('terms', Admin\TermController::class);
 });
