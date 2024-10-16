@@ -3,7 +3,7 @@
         <a class="navbar-brand nagoyameshi-app-name" href="{{ url('/') }}">
             <div class="d-flex align-items-center">
                 <img class="nagoyameshi-logo me-1" src ="{{ asset('/images/logo.svg') }}" alt="nagoyameshi">
-                NAGOYAMESHI
+                おはなみマート
             </div>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -28,7 +28,7 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('admin.home') }}">ホーム</a>
                             <a class="dropdown-item" href="{{ route('admin.users.index') }}">会員一覧</a>
-                            <a class="dropdown-item" href="{{ route('admin.products.index') }}">店舗一覧</a>
+                            <a class="dropdown-item" href="{{ route('admin.products.index') }}">商品一覧</a>
                             <a class="dropdown-item" href="{{ route('admin.categories.index') }}">カテゴリ一覧</a>
                             <a class="dropdown-item" href="{{ route('admin.company.index') }}">会社概要</a>
                             <a class="dropdown-item" href="{{ route('admin.terms.index') }}">利用規約</a>
