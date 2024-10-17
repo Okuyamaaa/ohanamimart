@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,5 @@ Route::group(['middleware' => 'guest:admin'], function () {
 });
 Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
     Route::resource('user', UserController::class);
+    Route::resource('products', ProductController::class);
 });
