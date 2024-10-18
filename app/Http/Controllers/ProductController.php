@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,8 @@ class ProductController extends Controller
         $categories = Category::all();
 
         $sorts = [
-            '掲載日が新しい順' => 'created_at desc'
+            '掲載日が新しい順' => 'created_at desc',
+            '価格が安い順' => 'price asc'
         ];
 
 
@@ -58,9 +60,14 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Product $product)
     {
-        return view('admin.products.create');
+        $user_id = Auth::id();
+        $categories = Category::all();
+
+        $category_ids = $product->categories->pluck('id')->toArray();
+
+            return view('products.create', compact('product', 'categories', 'category_ids'));
     }
 
     /**
@@ -69,7 +76,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max255',
+            'name' => 'required|max:255',
             'image' => 'image|max:2040',
             'description' => 'required',
             'price' => 'required|numeric|min:0',
@@ -82,10 +89,14 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('products', 'public');
         }
-        $product->iamge = $image;
+        $product->image = $image;
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->user_id = Auth::id();
         $product->save();
+
+        $category_ids = array_filter($request->input('category_ids'));
+        $restaurant->categories()->sync($category_ids);
 
         return to_route('products.index')->with('flash_message','商品を追加しました。');
     }
@@ -95,7 +106,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        $user = Auth::id();
+        return view('products.show', compact('product', 'user'));
     }
 
     /**
@@ -103,7 +115,15 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $user_id = Auth::id();
+        $categories = Category::all();
+
+        $category_ids = $product->categories->pluck('id')->toArray();
+
+        if($product->user_id !== $user_id){
+            return to_route('products.index', $product)->with('error_message', '不正なアクセスです。');
+        }
+            return view('products.edit', compact('product', 'categories', 'category_ids'));
     }
 
     /**
@@ -111,7 +131,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'image|max:2040',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        $product->name = $request->input('name');
+
+        $image = '';
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('products', 'public');
+        }
+        $product->image = $image;
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->user_id = Auth::id();
+        $product->update();
+
+        $category_ids = array_filter($request->input('category_ids'));
+        $product->categories()->sync($category_ids);
+
+        return to_route('products.index')->with('flash_message','商品を編集しました。');
     }
 
     /**

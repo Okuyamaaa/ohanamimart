@@ -55,7 +55,7 @@
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
             @foreach ($user_products as $user_product)
                 <div class="col">
-                    <a href="#" class="link-dark nagoyameshi-card-link">
+                    <a href="{{ route('products.show', $user_product) }}" class="link-dark nagoyameshi-card-link">
                         <div class="card h-100">
                             @if ($user_product->image !== '')
                                 <img src="{{ asset('storage/' . $user_product->image) }}" class="card-img-top nagoyameshi-vertical-card-image">
@@ -79,6 +79,10 @@
                                         <span>カテゴリ未設定</span>
                                     @endif
                                 </div>
+                                <p class="card-text">
+                                    <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($user_product->reviews->avg('score') * 2) / 2 }}"></span>
+                                    {{ number_format(round($user_product->reviews->avg('score'), 2), 2) }}
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -168,7 +172,7 @@
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
             @foreach ($new_products as $new_product)
                 <div class="col">
-                    <a href="#" class="link-dark nagoyameshi-card-link">
+                    <a href="{{ route('products.show', $new_product) }}" class="link-dark nagoyameshi-card-link">
                         <div class="card h-100">
                             @if ($new_product->image !== '')
                                 <img src="{{ asset('storage/' . $new_product->image) }}" class="card-img-top nagoyameshi-vertical-card-image">

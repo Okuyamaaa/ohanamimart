@@ -104,7 +104,7 @@
 
                 @foreach ($products as $product)
                     <div class="mb-3">
-                        <a href="#" class="link-dark nagoyameshi-card-link">
+                        <a href="{{route('products.show', $product)}}" class="link-dark nagoyameshi-card-link">
                             <div class="card h-100">
                                 <div class="row g-0">
                                     <div class="col-md-4">
@@ -133,6 +133,10 @@
                                                 @endif
                                             </div>
                                             <hr class="my-2">
+                                            <p class="mb-1">
+                                                <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($product->reviews->avg('score') * 2) / 2 }}"></span>
+                                                {{ number_format(round($product->reviews->avg('score'), 2), 2) }}（{{ $product->reviews->count() }}件）
+                                            </p>
                                             <div class="mb-1">
                                                 <span>{{ number_format($product->price) }}円</span>
                                             </div>
