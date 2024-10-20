@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,8 @@ Route::group(['middleware' => 'guest:admin'], function () {
 Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
     Route::resource('user', UserController::class);
     Route::resource('products', ProductController::class);
+    // Route::resource('favorites', FavoriteController::class);
+    Route::get('favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::post('favorites/{product_id}', [FavoriteController::class, 'store'])->name('favorites.store');
+    Route::delete('favorites/{product_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 });

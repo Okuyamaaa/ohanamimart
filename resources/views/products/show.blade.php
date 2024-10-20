@@ -68,7 +68,7 @@
                 <div class="container">
                     <div class="row pb-2 mb-2 border-bottom">
                         <div class="col-2">
-                            <span class="fw-bold">店舗名</span>
+                            <span class="fw-bold">商品名</span>
                         </div>
 
                         <div class="col">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                
+
                     <div class="row pb-2 mb-4 border-bottom">
                         <div class="col-2">
                             <span class="fw-bold">カテゴリ</span>
@@ -118,6 +118,36 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="row pb-2 mb-2 border-bottom">
+                        <div class="col-2">
+                            <span class="fw-bold">出品者</span>
+                        </div>
+
+                        <div class="col">
+                            <span>{{ $product->user_id }}</span>
+                        </div>
+                    </div>
+
+                    @guest
+                        <form action="{{ route('favorites.store', $product->id) }}" method="post" class="text-center">
+                            @csrf
+                            <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">♥ いいね！</button>
+                        </form>
+                    @else
+                        @if (Auth::user()->favorite_products()->where('product_id', $product->id)->doesntExist())
+                            <form action="{{ route('favorites.store', $product->id) }}" method="post" class="text-center">
+                                @csrf
+                                <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">♥ いいね！</button>
+                            </form>
+                        @else
+                            <form action="{{ route('favorites.destroy', $product->id) }}" method="post" class="text-center">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">♥ いいね！解除</button>
+                            </form>
+                        @endif
+                    @endguest
                 </div>
             </div>
         </div>

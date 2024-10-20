@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
@@ -96,7 +98,7 @@ class ProductController extends Controller
         $product->save();
 
         $category_ids = array_filter($request->input('category_ids'));
-        $restaurant->categories()->sync($category_ids);
+        $product->categories()->sync($category_ids);
 
         return to_route('products.index')->with('flash_message','商品を追加しました。');
     }

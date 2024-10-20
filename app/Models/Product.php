@@ -10,8 +10,8 @@ class Product extends Model
 {
     use HasFactory, Sortable;
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
     public function categories(){
         return $this->belongsToMany(Category::class);
@@ -20,4 +20,5 @@ class Product extends Model
     public function reviews(){
         return $this->hasMany(Review::class);
     }
+
 }
