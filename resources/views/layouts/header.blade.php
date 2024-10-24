@@ -68,7 +68,7 @@
 
                                 @if (Auth::user())
                                     <a class="dropdown-item" href="#">予約一覧</a>
-                                    <a class="dropdown-item" href="#">お気に入り一覧</a>
+                                    <a class="dropdown-item" href="{{ route('favorites.index') }}">お気に入り一覧</a>
                                     <a class="dropdown-item" href="{{ route('products.create') }}">出品</a>
                                     <a class="dropdown-item" href="#">有料プラン解約</a>
                                 @else

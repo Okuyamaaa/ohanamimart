@@ -46,13 +46,10 @@
                 @if($product->user_id === Auth::id())
                 <ul class="nav nav-tabs mb-2">
                     <li class="nav-item">
-                        <a class="nav-link active text-white nagoyameshi-bg" aria-current="page" href="{{ route('products.show', $product) }}">トップ</a>
+                        <a class="nav-link active text-white nagoyameshi-bg" aria-current="page" href="{{ route('products.show', $product) }}">詳細</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-dark" href="{{route('products.edit', $product)}}">編集</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-dark" href="{{route('products.destroy', $product)}}">削除</a>
                     </li>
                 </ul>
                 @endif
@@ -123,18 +120,28 @@
                         <div class="col-2">
                             <span class="fw-bold">出品者</span>
                         </div>
-
+                        
                         <div class="col">
-                            <span>{{ $product->user_id }}</span>
+                        @if($product->user_id !== Auth::id())
+                            <a href = "{{ route('user.show', $users)}}">{{ $product->user->name }}</a>
+                        @else
+                            <a href = "{{ route('user.index')}}">{{ $product->user->name }}</a>
                         </div>
+                        @endif
                     </div>
 
+
+                </div>
+                
                     @guest
                         <form action="{{ route('favorites.store', $product->id) }}" method="post" class="text-center">
                             @csrf
                             <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">♥ いいね！</button>
                         </form>
                     @else
+
+                    @if($product->user_id !== Auth::id())
+                     
                         @if (Auth::user()->favorite_products()->where('product_id', $product->id)->doesntExist())
                             <form action="{{ route('favorites.store', $product->id) }}" method="post" class="text-center">
                                 @csrf
@@ -147,8 +154,9 @@
                                 <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">♥ いいね！解除</button>
                             </form>
                         @endif
+                    @endif
                     @endguest
-                </div>
+
             </div>
         </div>
     </div>

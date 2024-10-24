@@ -52,17 +52,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($favorite_restaurants as $favorite_restaurant)
+                        @foreach ($favorite_products as $favorite_product)
                             <tr>
                                 <td>
-                                    <a href="{{ route('restaurants.show', $favorite_restaurant) }}">
-                                        {{ $favorite_restaurant->name }}
+                                    <a href="{{ route('products.show', $favorite_product) }}">
+                                        {{ $favorite_product->name }}
                                     </a>
                                 </td>
-                                <td>{{ substr($favorite_restaurant->postal_code, 0, 3) . '-' . substr($favorite_restaurant->postal_code, 3) }}</td>
-                                <td>{{ $favorite_restaurant->address }}</td>
+                                <td>{{ substr($favorite_product->postal_code, 0, 3) . '-' . substr($favorite_product->postal_code, 3) }}</td>
+                                <td>{{ $favorite_product->address }}</td>
                                 <td>
-                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#removeFavoriteModal" data-restaurant-id="{{ $favorite_restaurant->id }}" data-restaurant-name="{{ $favorite_restaurant->name }}">解除</a>
+                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#removeFavoriteModal" data-restaurant-id="{{ $favorite_product->id }}" data-restaurant-name="{{ $favorite_product->name }}">解除</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -70,7 +70,7 @@
                 </table>
 
                 <div class="d-flex justify-content-center">
-                    {{ $favorite_restaurants->links() }}
+                    {{ $favorite_products->links() }}
                 </div>
             </div>
         </div>

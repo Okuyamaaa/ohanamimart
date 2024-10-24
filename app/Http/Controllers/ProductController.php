@@ -106,10 +106,17 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Product $product, User $user)
     {
-        $user = Auth::id();
-        return view('products.show', compact('product', 'user'));
+        //  $user = Auth::id();
+        // $user_products = Product::with('user')->where($product->user_id)->get();
+        // $user_products = Product::with(['user' => function ($query) {
+        //     $query->where('user_id', $user->id);
+        // }])->get();
+        $users = $product->user_id;
+        $user_products = Product::where('user_id', $user->id);
+        // var_dump($user_products);exit;
+        return view('products.show', compact('product', 'user_products', 'user', 'users'));
     }
 
     /**
@@ -163,6 +170,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->delete();
         return to_route('products.index')->with('flash_message', '商品を削除しました。');
     }
 }

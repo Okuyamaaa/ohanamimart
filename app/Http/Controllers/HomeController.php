@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        $user_products = Product::take(6)->get();
+        $user_products = Product::paginate(30);
         $categories = Category::all();
         $new_products = Product::orderBy('created_at', 'desc')->take(6)->get();
 

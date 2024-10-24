@@ -19,6 +19,7 @@ class FavoriteController extends Controller
 
     public function store($product_id){
 
+
         Auth::user()->favorite_products()->attach($product_id);
 
         return back()->with('flash_message', 'いいね！しました。');

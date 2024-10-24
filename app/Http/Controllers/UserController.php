@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
+use App\Models\Product;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,6 +22,12 @@ class UserController extends Controller
         return view('user.index', compact('user'));
     }
 
+    public function show(User $user, Product $product){
+      $products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
+      $reviews = Review::where('product_id', $product->id)->orderBy('created_at', 'desc')->paginate(5);
+ 
+        return view('user.show', compact('user', 'product', 'products', 'reviews'));
+    }
 
    
     public function edit(User $user)

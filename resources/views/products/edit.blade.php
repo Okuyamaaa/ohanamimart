@@ -5,6 +5,24 @@
 @endpush
 
 @section('content')
+<!-- レビューの削除用モーダル -->
+<div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteReviewModalLabel">商品を削除してもよろしいですか？</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+            </div>
+            <div class="modal-footer">
+                <form action="" method="post" name="deleteReviewForm">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="col container">
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-9">
@@ -28,6 +46,17 @@
                             @endforeach
                         </ul>
                     </div>
+                @endif
+
+                @if($product->user_id === Auth::id())
+                <ul class="nav nav-tabs mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link text-black" aria-current="page" href="{{ route('products.show', $product) }}">詳細</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark active text-white nagoyameshi-bg" href="{{route('products.edit', $product)}}">編集</a>
+                    </li>
+                </ul>
                 @endif
 
                 <form method="POST" action="{{ route('products.update', $product) }}" enctype="multipart/form-data">
@@ -115,6 +144,14 @@
                     <div class="form-group d-flex justify-content-center mb-4">
                         <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">更新</button>
                     </div>
+                    <div class="form-group d-flex justify-content-center mb-4">
+                    <form action="{{ route('products.destroy', $product->id) }}" method="post" class="text-center">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">削除</button>
+                            </form>
+                    </div>
+                    
                 </form>
             </div>
         </div>

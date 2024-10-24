@@ -129,7 +129,7 @@
                                                         </div>
                                                     @endforeach
                                                 @else
-                                                    <span>カテゴリ未設定</span>
+                                                    <span></span>
                                                 @endif
                                             </div>
                                             <hr class="my-2">

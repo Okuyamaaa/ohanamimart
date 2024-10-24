@@ -51,46 +51,7 @@
     </div>
 
     <div class="container nagoyameshi-container">
-        <h2 class="mb-3">評価が高いお店</h2>
-        <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
-            @foreach ($user_products as $user_product)
-                <div class="col">
-                    <a href="{{ route('products.show', $user_product) }}" class="link-dark nagoyameshi-card-link">
-                        <div class="card h-100">
-                            @if ($user_product->image !== '')
-                                <img src="{{ asset('storage/' . $user_product->image) }}" class="card-img-top nagoyameshi-vertical-card-image">
-                            @else
-                                <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top nagoyameshi-vertical-card-image" alt="画像なし">
-                            @endif
-                            <div class="card-body">
-                                <h3 class="card-title">{{ $user_product->name }}</h3>
-                                <div class="text-muted small mb-1">
-                                    @if ($user_product->categories()->exists())
-                                        @foreach ($user_product->categories as $index => $category)
-                                            <div class="d-inline-block">
-                                                @if ($index === 0)
-                                                    {{ $category->name }}
-                                                @else
-                                                    {{ ' ' . $category->name }}
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    @else
-                                        <span>カテゴリ未設定</span>
-                                    @endif
-                                </div>
-                                <p class="card-text">
-                                    <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($user_product->reviews->avg('score') * 2) / 2 }}"></span>
-                                    {{ number_format(round($user_product->reviews->avg('score'), 2), 2) }}
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-
-        <h2 class="mb-3">カテゴリから探す</h2>
+    <h2 class="mb-3">カテゴリから探す</h2>
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-3">
             <div class="col">
                 <a href="{{ url("/products/?category_id={$categories->where('name', '和食')->value('id')}") }}" class="nagoyameshi-card-link">
@@ -168,7 +129,49 @@
             @endforeach
         </div>
 
-        <h2 class="mb-3">新規掲載店</h2>
+
+    
+        <h2 class="mb-3">新着商品</h2>
+        <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
+            @foreach ($user_products as $user_product)
+                <div class="col">
+                    <a href="{{ route('products.show', $user_product) }}" class="link-dark nagoyameshi-card-link">
+                        <div class="card h-100">
+                            @if ($user_product->image !== '')
+                                <img src="{{ asset('storage/' . $user_product->image) }}" class="card-img-top nagoyameshi-vertical-card-image">
+                            @else
+                                <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top nagoyameshi-vertical-card-image" alt="画像なし">
+                            @endif
+                            <div class="card-body">
+                                <h3 class="card-title">{{ $user_product->name }}</h3>
+                                <div class="text-muted small mb-1">
+                                    @if ($user_product->categories()->exists())
+                                        @foreach ($user_product->categories as $index => $category)
+                                            <div class="d-inline-block">
+                                                @if ($index === 0)
+                                                    {{ $category->name }}
+                                                @else
+                                                    {{ ' ' . $category->name }}
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <span></span>
+                                    @endif
+                                </div>
+                                <p class="card-text">{{ mb_substr($user_product->description, 0, 20) }}@if (mb_strlen($user_product->description) > 20)...@endif</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+        <div class="d-flex justify-content-center">
+                    {{ $user_products->appends(request()->query())->links() }}
+                </div>
+
+      
+        <!-- <h2 class="mb-3">新規掲載店</h2>
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
             @foreach ($new_products as $new_product)
                 <div class="col">
@@ -193,7 +196,7 @@
                                             </div>
                                         @endforeach
                                     @else
-                                        <span>カテゴリ未設定</span>
+                                        <span></span>
                                     @endif
                                 </div>
                                 <p class="card-text">{{ mb_substr($new_product->description, 0, 19) }}@if (mb_strlen($new_product->description) > 19)...@endif</p>
@@ -203,5 +206,5 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> -->
 @endsection
