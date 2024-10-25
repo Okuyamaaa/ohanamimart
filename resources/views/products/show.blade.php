@@ -154,10 +154,32 @@
                                 <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">♥ いいね！解除</button>
                             </form>
                         @endif
+                      
+
                     @endif
                     @endguest
 
+
+                         @if($product->user_id !== Auth::id())
+                     
+                        @if ($cart->doesntExist())
+                            <form action="{{ route('cart.store', $product->id) }}" method="post" class="text-center">
+                                @csrf
+                                <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">カートに入れる</button>
+                            </form>
+                        @else
+                            <form action="{{ route('cart.destroy', $product->id) }}" method="post" class="text-center">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">カートから解除</button>
+                            </form>
+                        @endif
+                      
+
+                    @endif
+                    
             </div>
+        
         </div>
     </div>
 @endsection

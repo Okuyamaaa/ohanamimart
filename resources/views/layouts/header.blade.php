@@ -67,7 +67,7 @@
                                 <a class="dropdown-item" href="{{ route('user.index') }}">会員情報</a>
 
                                 @if (Auth::user())
-                                    <a class="dropdown-item" href="#">予約一覧</a>
+                                    <a class="dropdown-item" href="{{ route('cart.index')}}">予約一覧</a>
                                     <a class="dropdown-item" href="{{ route('favorites.index') }}">お気に入り一覧</a>
                                     <a class="dropdown-item" href="{{ route('products.create') }}">出品</a>
                                     <a class="dropdown-item" href="#">有料プラン解約</a>

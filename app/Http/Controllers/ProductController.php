@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Cart;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
@@ -113,10 +113,11 @@ class ProductController extends Controller
         // $user_products = Product::with(['user' => function ($query) {
         //     $query->where('user_id', $user->id);
         // }])->get();
+        $cart = Cart::where('product_id', $product->id);
         $users = $product->user_id;
         $user_products = Product::where('user_id', $user->id);
         // var_dump($user_products);exit;
-        return view('products.show', compact('product', 'user_products', 'user', 'users'));
+        return view('products.show', compact('product', 'user_products', 'user', 'users', 'cart'));
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\TermController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
     Route::get('favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('favorites/{product_id}', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::delete('favorites/{product_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+    Route::resource('cart', CartController::class);
 });
 Route::middleware(['guest:admin'])->group(function(){
     Route::get('company', [CompanyController::class, 'index'])->name('company.index');
