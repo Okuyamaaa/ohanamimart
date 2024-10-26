@@ -20,19 +20,20 @@ class CartController extends Controller
     }
 
     public function store(Product $product){
+
         $cart = new Cart();
         $cart->product_id = $product->id;
         $cart->user_id = Auth::id();
         $cart->save();
        
 
-        return back()->with('flash_message', 'いいね！しました。');
+        return back()->with('flash_message', 'カートに追加しました。');
     }
 
     public function destroy(){
 
        $cart->delete();
 
-        return back()->with('flash_message', 'いいね！を解除しました。');
+        return back()->with('flash_message', 'カートから削除しました。');
     }
 }
