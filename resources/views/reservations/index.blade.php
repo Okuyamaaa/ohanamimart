@@ -17,14 +17,14 @@
                     <form action="" method="post" name="cancelReservationForm">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                        <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">削除</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">

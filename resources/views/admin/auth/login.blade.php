@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container my-4 nagoyameshi-container">
+    <div class="container my-4 ohanami-container">
         <div class="row justify-content-center">
             <div class="col-xl-3 col-lg-4 col-md-5 col-sm-7">
                 <h1 class="mb-4 text-center">ログイン</h1>
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group d-flex justify-content-center mb-4">
-                        <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">ログイン</button>
+                        <button type="submit" class="btn text-white shadow-sm w-100 ohanami-btn">ログイン</button>
                     </div>
                 </form>
             </div>

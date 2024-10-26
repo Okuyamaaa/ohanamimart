@@ -15,15 +15,16 @@
 
 @section('content')
     <div>
-        <div class="swiper nagoyameshi-swiper">
+        <div class="swiper ohanami-swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="{{ asset('/images/main1.jpg') }}"></div>
-                <div class="swiper-slide"><img src="{{ asset('/images/main2.jpg') }}"></div>
-                <div class="swiper-slide"><img src="{{ asset('/images/main3.jpg') }}"></div>
-                <div class="d-flex align-items-center nagoyameshi-overlay-background">
-                    <div class="container nagoyameshi-container nagoyameshi-overlay-text">
-                        <h1 class="text-white nagoyameshi-catchphrase-heading">名古屋ならではの味を、<br>見つけよう</h1>
-                        <p class="text-white nagoyameshi-catchphrase-paragraph">NAGOYAMESHIは、<br>名古屋市のB級グルメ専門のレビューサイトです。</p>
+                <div class="swiper-slide"><img src="{{ asset('/images/rebon.jpg') }}"></div>
+                <div class="swiper-slide"><img src="{{ asset('/images/color.jpg') }}"></div>
+                <div class="swiper-slide"><img src="{{ asset('/images/ball.jpg') }}"></div>
+                <div class="swiper-slide"><img src="{{ asset('/images/main4.jpg') }}"></div>
+                <div class="d-flex align-items-center ohanami-overlay-background">
+                    <div class="container ohanami-container ohanami-overlay-text">
+                        <h1 class="text-white ohanami-catchphrase-heading">ただひとつの手作りを、<br>あなたに</h1>
+                        <p class="text-white ohanami-catchphrase-paragraph">おはなみマートは、<br>ハンドメイド品専用ショッピングサイトです。</p>
                     </div>
                 </div>
             </div>
@@ -31,7 +32,7 @@
     </div>
 
     @if (session('flash_message'))
-        <div class="container nagoyameshi-container my-3">
+        <div class="container ohanami-container my-3">
             <div class="alert alert-info" role="alert">
                 <p class="mb-0">{{ session('flash_message') }}</p>
             </div>
@@ -39,81 +40,81 @@
     @endif
 
     <div class="bg-light mb-4 py-4">
-        <div class="container nagoyameshi-container">
+        <div class="container ohanami-container">
             <h2 class="mb-3">キーワードから探す</h2>
-            <form method="GET" action="{{ route('products.index') }}" class="nagoyameshi-user-search-box">
+            <form method="GET" action="{{ route('products.index') }}" class="ohanami-user-search-box">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="店舗名・エリア・カテゴリ" name="keyword">
-                    <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                    <button type="submit" class="btn text-white shadow-sm ohanami-btn">検索</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="container nagoyameshi-container">
+    <div class="container ohanami-container">
     <h2 class="mb-3">カテゴリから探す</h2>
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-3">
             <div class="col">
-                <a href="{{ url("/products/?category_id={$categories->where('name', '和食')->value('id')}") }}" class="nagoyameshi-card-link">
+                <a href="{{ url("/products/?category_id={$categories->where('name', 'バッグ')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/washoku.jpg') }}" class="card-img nagoyameshi-vertical-card-image" alt="和食">
-                        <div class="card-img-overlay d-flex justify-content-center align-items-center nagoyameshi-overlay-background">
-                            <h3 class="card-title nagoyameshi-category-name">和食</h5>
+                        <img src="{{ asset('/images/bag.jpg') }}" class="card-img ohanami-vertical-card-image" alt="バッグ">
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
+                            <h3 class="card-title ohanami-category-name">バッグ</h5>
                         </div>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="{{ url("/products/?category_id={$categories->where('name', 'うどん')->value('id')}") }}" class="nagoyameshi-card-link">
+                <a href="{{ url("/products/?category_id={$categories->where('name', '巾着')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/udon.jpg') }}" class="card-img nagoyameshi-vertical-card-image" alt="うどん">
-                        <div class="card-img-overlay d-flex justify-content-center align-items-center nagoyameshi-overlay-background">
-                            <h3 class="card-title nagoyameshi-category-name">うどん</h5>
+                        <img src="{{ asset('/images/pochi.jpg') }}" class="card-img ohanami-vertical-card-image" alt="巾着">
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
+                            <h3 class="card-title ohanami-category-name">巾着</h5>
                         </div>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="{{ url("/products/?category_id={$categories->where('name', '丼物')->value('id')}") }}" class="nagoyameshi-card-link">
+                <a href="{{ url("/products/?category_id={$categories->where('name', '財布')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/don.jpg') }}" class="card-img nagoyameshi-vertical-card-image" alt="丼物">
-                        <div class="card-img-overlay d-flex justify-content-center align-items-center nagoyameshi-overlay-background">
-                            <h3 class="card-title nagoyameshi-category-name">丼物</h5>
+                        <img src="{{ asset('/images/saifu.jpg') }}" class="card-img ohanami-vertical-card-image" alt="財布">
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
+                            <h3 class="card-title ohanami-category-name">財布</h5>
                         </div>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="{{ url("/products/?category_id={$categories->where('name', 'ラーメン')->value('id')}") }}" class="nagoyameshi-card-link">
+                <a href="{{ url("/products/?category_id={$categories->where('name', '手芸')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/ramen.jpg') }}" class="card-img nagoyameshi-vertical-card-image" alt="ラーメン">
-                        <div class="card-img-overlay d-flex justify-content-center align-items-center nagoyameshi-overlay-background">
-                            <h3 class="card-title nagoyameshi-category-name">ラーメン</h5>
+                        <img src="{{ asset('/images/syugei.jpg') }}" class="card-img ohanami-vertical-card-image" alt="手芸">
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
+                            <h3 class="card-title ohanami-category-name">手芸</h5>
                         </div>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="{{ url("/products/?category_id={$categories->where('name', 'おでん')->value('id')}") }}" class="nagoyameshi-card-link">
+                <a href="{{ url("/products/?category_id={$categories->where('name', 'アクセサリー')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/oden.jpg') }}" class="card-img nagoyameshi-vertical-card-image" alt="おでん">
-                        <div class="card-img-overlay d-flex justify-content-center align-items-center nagoyameshi-overlay-background">
-                            <h3 class="card-title nagoyameshi-category-name">おでん</h5>
+                        <img src="{{ asset('/images/acse.jpg') }}" class="card-img ohanami-vertical-card-image" alt="アクセサリー">
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
+                            <h3 class="card-title ohanami-category-name">アクセサリー</h5>
                         </div>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="{{ url("/products/?category_id={$categories->where('name', '揚げ物')->value('id')}") }}" class="nagoyameshi-card-link">
+                <a href="{{ url("/products/?category_id={$categories->where('name', '置物')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/fried.jpg') }}" class="card-img nagoyameshi-vertical-card-image" alt="揚げ物">
-                        <div class="card-img-overlay d-flex justify-content-center align-items-center nagoyameshi-overlay-background">
-                            <h3 class="card-title nagoyameshi-category-name">揚げ物</h5>
+                        <img src="{{ asset('/images/okimono.jpg') }}" class="card-img ohanami-vertical-card-image" alt="置物">
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
+                            <h3 class="card-title ohanami-category-name">置物</h5>
                         </div>
                     </div>
                 </a>
@@ -121,7 +122,7 @@
         </div>
         <div class="mb-5">
             @foreach ($categories as $category)
-                @if ($category->name === '和食' || $category->name === 'うどん' || $category->name === '丼物' || $category->name === 'ラーメン' || $category->name === 'おでん' || $category->name === '揚げ物')
+                @if ($category->name === 'バッグ' || $category->name === '巾着' || $category->name === '財布' || $category->name === '手芸' || $category->name === 'アクセサリー' || $category->name === '置物')
                     @continue
                 @else
                     <a href="{{ url("/products/?category_id={$category->id}") }}" class="btn btn-outline-secondary btn-sm me-1 mb-2">{{ $category->name }}</a>
@@ -135,12 +136,12 @@
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
             @foreach ($user_products as $user_product)
                 <div class="col">
-                    <a href="{{ route('products.show', $user_product) }}" class="link-dark nagoyameshi-card-link">
+                    <a href="{{ route('products.show', $user_product) }}" class="link-dark ohanami-card-link">
                         <div class="card h-100">
                             @if ($user_product->image !== '')
-                                <img src="{{ asset('storage/' . $user_product->image) }}" class="card-img-top nagoyameshi-vertical-card-image">
+                                <img src="{{ asset('storage/' . $user_product->image) }}" class="card-img-top ohanami-vertical-card-image">
                             @else
-                                <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top nagoyameshi-vertical-card-image" alt="画像なし">
+                                <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top ohanami-vertical-card-image" alt="画像なし">
                             @endif
                             <div class="card-body">
                                 <h3 class="card-title">{{ $user_product->name }}</h3>
@@ -175,12 +176,12 @@
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
             @foreach ($new_products as $new_product)
                 <div class="col">
-                    <a href="{{ route('products.show', $new_product) }}" class="link-dark nagoyameshi-card-link">
+                    <a href="{{ route('products.show', $new_product) }}" class="link-dark ohanami-card-link">
                         <div class="card h-100">
                             @if ($new_product->image !== '')
-                                <img src="{{ asset('storage/' . $new_product->image) }}" class="card-img-top nagoyameshi-vertical-card-image">
+                                <img src="{{ asset('storage/' . $new_product->image) }}" class="card-img-top ohanami-vertical-card-image">
                             @else
-                                <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top nagoyameshi-vertical-card-image" alt="画像なし">
+                                <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top ohanami-vertical-card-image" alt="画像なし">
                             @endif
                             <div class="card-body">
                                 <h3 class="card-title">{{ $new_product->name }}</h3>

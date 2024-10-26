@@ -7,10 +7,10 @@
                 <h1 class="mb-4 text-center">商品一覧</h1>
 
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
-                    <form method="GET" action="{{ route('admin.products.index') }}" class="nagoyameshi-admin-search-box mb-3">
+                    <form method="GET" action="{{ route('admin.products.index') }}" class="ohanami-admin-search-box mb-3">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="商品名で検索" name="keyword" value="{{ $keyword }}">
-                            <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                            <button type="submit" class="btn text-white shadow-sm ohanami-btn">検索</button>
                         </div>
                     </form>
 

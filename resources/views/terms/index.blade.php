@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -13,7 +13,7 @@
 
                 <h1 class="mb-4 text-center">利用規約</h1>
 
-                <div class="mb-4 nagoyameshi-terms">
+                <div class="mb-4 ohanami-terms">
                     {!! $term->content !!}
                 </div>
             </div>

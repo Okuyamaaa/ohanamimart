@@ -17,7 +17,7 @@
                 <form action="" method="post" name="deleteReviewForm">
                     @csrf
                     @method('delete')
-                    <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                    <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">削除</button>
                 </form>
             </div>
         </div>
@@ -54,7 +54,7 @@
                         <a class="nav-link text-black" aria-current="page" href="{{ route('products.show', $product) }}">詳細</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-dark active text-white nagoyameshi-bg" href="{{route('products.edit', $product)}}">編集</a>
+                        <a class="nav-link link-dark active text-white ohanami-bg" href="{{route('products.edit', $product)}}">編集</a>
                     </li>
                 </ul>
                 @endif
@@ -142,13 +142,13 @@
                     <hr class="my-4">
 
                     <div class="form-group d-flex justify-content-center mb-4">
-                        <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">更新</button>
+                        <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">更新</button>
                     </div>
                     <div class="form-group d-flex justify-content-center mb-4">
                     <form action="{{ route('products.destroy', $product->id) }}" method="post" class="text-center">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">削除</button>
+                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 ohanami-remove-favorite-button">削除</button>
                             </form>
                     </div>
                     

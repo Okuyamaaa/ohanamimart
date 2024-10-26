@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>NAGOYAMESHI</title>
+    <title>ohanamimart</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,17 +20,17 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-    <link href="{{ asset('/css/nagoyameshi.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/ohanami.css') }}" rel="stylesheet">
 
     @stack('styles')
 </head>
 <body>
-    <div id="app" class="nagoyameshi-wrapper">
+    <div id="app" class="ohanami-wrapper">
         @include('layouts.header')
 
         <main>
             @if (Auth::guard('admin')->check())
-                <div class="container py-4 nagoyameshi-container">
+                <div class="container py-4 ohanami-container">
                     <div class="row justify-content-center">
                         @include('layouts.sidebar')
                         @yield('content')

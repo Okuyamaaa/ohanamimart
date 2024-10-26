@@ -13,14 +13,14 @@
                 <form action="" method="post" name="deleteReviewForm">
                     @csrf
                     @method('delete')
-                    <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                    <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">削除</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -33,7 +33,7 @@
 
                 <h1 class="mb-2 text-center">{{ $product->name }}</h1>
                 <p class="text-center">
-                    <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($product->reviews->avg('score') * 2) / 2 }}"></span>
+                    <span class="ohanami-star-rating me-1" data-rate="{{ round($product->reviews->avg('score') * 2) / 2 }}"></span>
                     {{ number_format(round($product->reviews->avg('score'), 2), 2) }}（{{ $product->reviews->count() }}件）
                 </p>
 
@@ -46,7 +46,7 @@
                 @if($product->user_id === Auth::id())
                 <ul class="nav nav-tabs mb-2">
                     <li class="nav-item">
-                        <a class="nav-link active text-white nagoyameshi-bg" aria-current="page" href="{{ route('products.show', $product) }}">詳細</a>
+                        <a class="nav-link active text-white ohanami-bg" aria-current="page" href="{{ route('products.show', $product) }}">詳細</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-dark" href="{{route('products.edit', $product)}}">編集</a>
@@ -136,7 +136,7 @@
                     @guest
                         <form action="{{ route('favorites.store', $product->id) }}" method="post" class="text-center">
                             @csrf
-                            <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">♥ いいね！</button>
+                            <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">♥ いいね！</button>
                         </form>
                     @else
 
@@ -145,13 +145,13 @@
                         @if (Auth::user()->favorite_products()->where('product_id', $product->id)->doesntExist())
                             <form action="{{ route('favorites.store', $product->id) }}" method="post" class="text-center">
                                 @csrf
-                                <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">♥ いいね！</button>
+                                <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">♥ いいね！</button>
                             </form>
                         @else
                             <form action="{{ route('favorites.destroy', $product->id) }}" method="post" class="text-center">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">♥ いいね！解除</button>
+                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 ohanami-remove-favorite-button">♥ いいね！解除</button>
                             </form>
                         @endif
                       
@@ -165,13 +165,13 @@
                         @if ($cart->doesntExist())
                             <form action="{{ route('cart.store', $product->id) }}" method="post" class="text-center">
                                 @csrf
-                                <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">カートに入れる</button>
+                                <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">カートに入れる</button>
                             </form>
                         @else
                             <form action="{{ route('cart.destroy', $product->id) }}" method="post" class="text-center">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 nagoyameshi-remove-favorite-button">カートから解除</button>
+                                <button type="submit" class="btn btn-outline-primary shadow-sm w-50 ohanami-remove-favorite-button">カートから解除</button>
                             </form>
                         @endif
                       

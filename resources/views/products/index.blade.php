@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
@@ -14,7 +14,7 @@
                 <form method="GET" action="{{ route('products.index') }}" class="w-100 mb-3">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="店舗名・エリア・カテゴリ" name="keyword" value="{{ $keyword }}">
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                        <button type="submit" class="btn text-white shadow-sm ohanami-btn">検索</button>
                     </div>
                 </form>
 
@@ -37,7 +37,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">検索</button>
+                                <button type="submit" class="btn text-white shadow-sm w-100 ohanami-btn">検索</button>
                             </div>
                         </form>
                     </div>
@@ -63,7 +63,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">検索</button>
+                                <button type="submit" class="btn text-white shadow-sm w-100 ohanami-btn">検索</button>
                             </div>
                         </form>
                     </div>
@@ -80,7 +80,7 @@
                             @endif
                         </span>
                     </p>
-                    <form method="GET" action="{{ route('products.index') }}" class="mb-3 nagoyameshi-sort-box">
+                    <form method="GET" action="{{ route('products.index') }}" class="mb-3 ohanami-sort-box">
                         @if ($keyword)
                             <input type="hidden" name="keyword" value="{{ $keyword }}">
                         @endif
@@ -104,14 +104,14 @@
 
                 @foreach ($products as $product)
                     <div class="mb-3">
-                        <a href="{{route('products.show', $product)}}" class="link-dark nagoyameshi-card-link">
+                        <a href="{{route('products.show', $product)}}" class="link-dark ohanami-card-link">
                             <div class="card h-100">
                                 <div class="row g-0">
                                     <div class="col-md-4">
                                         @if ($product->image !== '')
-                                            <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top nagoyameshi-horizontal-card-image">
+                                            <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top ohanami-horizontal-card-image">
                                         @else
-                                            <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top nagoyameshi-horizontal-card-image" alt="画像なし">
+                                            <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top ohanami-horizontal-card-image" alt="画像なし">
                                         @endif
                                     </div>
                                     <div class="col-md-8">
@@ -134,7 +134,7 @@
                                             </div>
                                             <hr class="my-2">
                                             <p class="mb-1">
-                                                <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($product->reviews->avg('score') * 2) / 2 }}"></span>
+                                                <span class="ohanami-star-rating me-1" data-rate="{{ round($product->reviews->avg('score') * 2) / 2 }}"></span>
                                                 {{ number_format(round($product->reviews->avg('score'), 2), 2) }}（{{ $product->reviews->count() }}件）
                                             </p>
                                             <div class="mb-1">

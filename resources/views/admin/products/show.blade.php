@@ -13,7 +13,7 @@
                     <form action="{{ route('admin.products.destroy', $product) }}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                        <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">削除</button>
                     </form>
                 </div>
             </div>

@@ -21,7 +21,7 @@
 
 
 
-                <div class="container mb-4 nagoyameshi-terms">
+                <div class="container mb-4 ohanami-terms">
                     {!! $term->content !!}
                 </div>
             </div>

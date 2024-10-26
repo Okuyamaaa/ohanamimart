@@ -17,14 +17,14 @@
                 <form action="" method="post" name="deleteReviewForm">
                     @csrf
                     @method('delete')
-                    <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                    <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">削除</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -38,7 +38,7 @@
 
                 <h1 class="mb-2 text-center">{{ $restaurant->name }}</h1>
                 <p class="text-center">
-                    <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($restaurant->reviews->avg('score') * 2) / 2 }}"></span>
+                    <span class="ohanami-star-rating me-1" data-rate="{{ round($restaurant->reviews->avg('score') * 2) / 2 }}"></span>
                     {{ number_format(round($restaurant->reviews->avg('score'), 2), 2) }}（{{ $restaurant->reviews->count() }}件）
                 </p>
 
@@ -62,7 +62,7 @@
                         <a class="nav-link link-dark" href="{{ route('restaurants.reservations.create', $restaurant) }}">予約</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-white nagoyameshi-bg" aria-current="page" href="{{ route('restaurants.reviews.index', $restaurant) }}">レビュー</a>
+                        <a class="nav-link active text-white ohanami-bg" aria-current="page" href="{{ route('restaurants.reviews.index', $restaurant) }}">レビュー</a>
                     </li>
                 </ul>
 
@@ -80,7 +80,7 @@
                             @endif
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><span class="nagoyameshi-star-rating" data-rate="{{ $review->score }}"></span></li>
+                            <li class="list-group-item"><span class="ohanami-star-rating" data-rate="{{ $review->score }}"></span></li>
                             <li class="list-group-item">{{ $review->content }}</li>
                         </ul>
                     </div>
@@ -103,7 +103,7 @@
                 <!-- 有料プランに登録しており、レビューを投稿済みでなければ表示する -->
                 @if (Auth::user()->subscribed('premium_plan') && $restaurant->reviews()->where('user_id', Auth::id())->doesntExist())
                     <div class="text-center mt-3">
-                        <a href="{{ route('restaurants.reviews.create', $restaurant) }}" class="btn text-white shadow-sm w-50 nagoyameshi-btn">レビューを投稿する</a>
+                        <a href="{{ route('restaurants.reviews.create', $restaurant) }}" class="btn text-white shadow-sm w-50 ohanami-btn">レビューを投稿する</a>
                     </div>
                 @endif
             </div>

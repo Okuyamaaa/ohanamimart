@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container nagoyameshi-container pb-5">
+<div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-md-9">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -36,19 +36,19 @@
                     </div>
 
 
-                    <div class="container nagoyameshi-container">
+                    <div class="container ohanami-container">
                     <h1 class="mb-8 text-center">--出品商品--</h1>
                     <div class="row row-cols-xl-10 row-cols-md-5 row-cols-10 g-1 mb-1">
                     @foreach ($products as $product)
                     <div class="col mb-1">
-                        <a href="{{route('products.show', $product)}}" class="link-dark nagoyameshi-card-link">
+                        <a href="{{route('products.show', $product)}}" class="link-dark ohanami-card-link">
                             <div class="card h-1">
                                 <div>
                                     <div>
                                         @if ($product->image !== '')
-                                            <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top nagoyameshi-vertical-card-image">
+                                            <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top ohanami-vertical-card-image">
                                         @else
-                                            <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top nagoyameshi-vertical-card-image" alt="画像なし">
+                                            <img src="{{ asset('/images/no_image.jpg') }}" class="card-img-top ohanami-vertical-card-image" alt="画像なし">
                                         @endif
                                     </div>
                                     <div>
@@ -98,7 +98,7 @@
                             @endif
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><span class="nagoyameshi-star-rating" data-rate="{{ $review->score }}"></span></li>
+                            <li class="list-group-item"><span class="ohanami-star-rating" data-rate="{{ $review->score }}"></span></li>
                             <li class="list-group-item">{{ $review->content }}</li>
                         </ul>
                     </div>

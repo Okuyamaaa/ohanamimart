@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">

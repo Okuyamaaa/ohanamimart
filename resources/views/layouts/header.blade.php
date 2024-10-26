@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container nagoyameshi-container">
-        <a class="navbar-brand nagoyameshi-app-name" href="{{ url('/') }}">
+    <div class="container ohanami-container">
+        <a class="navbar-brand ohanami-app-name" href="{{ url('/') }}">
             <div class="d-flex align-items-center">
-                <img class="nagoyameshi-logo me-1" src ="{{ asset('/images/logo.svg') }}" alt="nagoyameshi">
+                <img class="ohanami-logo me-1" src ="{{ asset('/images/logo.svg') }}" alt="ohanami">
                 おはなみマート
             </div>
         </a>

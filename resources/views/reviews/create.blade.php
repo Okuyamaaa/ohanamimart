@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -16,7 +16,7 @@
 
                 <h1 class="mb-2 text-center">{{ $restaurant->name }}</h1>
                 <p class="text-center">
-                    <span class="nagoyameshi-star-rating me-1" data-rate="{{ round($restaurant->reviews->avg('score') * 2) / 2 }}"></span>
+                    <span class="ohanami-star-rating me-1" data-rate="{{ round($restaurant->reviews->avg('score') * 2) / 2 }}"></span>
                     {{ number_format(round($restaurant->reviews->avg('score'), 2), 2) }}（{{ $restaurant->reviews->count() }}件）
                 </p>
 
@@ -34,7 +34,7 @@
                         <a class="nav-link link-dark" href="{{ route('restaurants.reservations.create', $restaurant) }}">予約</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active text-white nagoyameshi-bg" aria-current="page" href="{{ route('restaurants.reviews.index', $restaurant) }}">レビュー</a>
+                        <a class="nav-link active text-white ohanami-bg" aria-current="page" href="{{ route('restaurants.reviews.index', $restaurant) }}">レビュー</a>
                     </li>
                 </ul>
 
@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="form-group d-flex justify-content-center mb-4">
-                        <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">投稿</button>
+                        <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">投稿</button>
                     </div>
                 </form>
 

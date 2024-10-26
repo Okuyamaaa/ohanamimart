@@ -19,7 +19,7 @@
                         <input type="text" class="form-control" name="name">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">登録</button>
+                        <button type="submit" class="btn text-white shadow-sm ohanami-btn">登録</button>
                     </div>
                 </form>
             </div>
@@ -41,7 +41,7 @@
                         <input type="text" class="form-control" name="name" value="">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">更新</button>
+                        <button type="submit" class="btn text-white shadow-sm ohanami-btn">更新</button>
                     </div>
                 </form>
             </div>
@@ -60,7 +60,7 @@
                     <form action="" method="post" name="deleteCategoryForm">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">削除</button>
+                        <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">削除</button>
                     </form>
                 </div>
             </div>
@@ -73,14 +73,14 @@
                 <h1 class="mb-4 text-center">カテゴリ一覧</h1>
 
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
-                    <form method="GET" action="{{ route('admin.categories.index') }}" class="nagoyameshi-admin-search-box mb-3">
+                    <form method="GET" action="{{ route('admin.categories.index') }}" class="ohanami-admin-search-box mb-3">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="カテゴリ名で検索" name="keyword" value="{{ $keyword }}">
-                            <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                            <button type="submit" class="btn text-white shadow-sm ohanami-btn">検索</button>
                         </div>
                     </form>
 
-                    <a href="#" class="btn text-white shadow-sm mb-3 nagoyameshi-btn" data-bs-toggle="modal" data-bs-target="#createCategoryModal">＋ 新規登録</a>
+                    <a href="#" class="btn text-white shadow-sm mb-3 ohanami-btn" data-bs-toggle="modal" data-bs-target="#createCategoryModal">＋ 新規登録</a>
                 </div>
 
                 @if (session('flash_message'))

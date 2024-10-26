@@ -20,7 +20,7 @@
                 </div>
 
 
-                <table class="table table-hover nagoyameshi-users-table">
+                <table class="table table-hover ohanami-users-table">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>

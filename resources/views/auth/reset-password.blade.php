@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-4 nagoyameshi-container">
+<div class="container py-4 ohanami-container">
     <div class="row justify-content-center">
         <div class="col-xl-5 col-lg-6 col-md-8">
             <h1 class="mb-4 text-center">パスワード再設定</h1>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="form-group d-flex justify-content-center mb-4">
-                    <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">再設定</button>
+                    <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">再設定</button>
                 </div>
             </form>
         </div>

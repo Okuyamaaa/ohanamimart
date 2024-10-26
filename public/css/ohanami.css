@@ -125,24 +125,24 @@ a:hover {
   color: #ae4203;
 }
 
-.nagoyameshi-wrapper {
+.ohanami-wrapper {
   min-height: 100vh;
   position: relative;
   padding-bottom: 240px;
   box-sizing: border-box;
 }
 
-.nagoyameshi-logo {
+.ohanami-logo {
   height: 24px;
 }
 
-.nagoyameshi-app-name {
+.ohanami-app-name {
   font-family: 'Carter One', cursive;
   font-size: 24px;
   color: #191919;
 }
 
-nav .nagoyameshi-app-name {
+nav .ohanami-app-name {
   padding: 0.32rem 0;
 }
 
@@ -154,45 +154,45 @@ footer {
   padding: 50px 15px;
 }
 
-.nagoyameshi-footer-logo {
+.ohanami-footer-logo {
   margin-bottom: 20px;
 }
 
-.nagoyameshi-footer-link {
+.ohanami-footer-link {
   margin-bottom: 30px;
 }
 
-.nagoyameshi-btn {
+.ohanami-btn {
   background-color: #d95204 !important;
   transition: 0.15s;
 }
 
-.nagoyameshi-btn:hover {
+.ohanami-btn:hover {
   opacity: 0.85;
 }
 
-.nagoyameshi-btn-danger {
+.ohanami-btn-danger {
   background-color: #d90421 !important;
   transition: 0.15s;
 }
 
-.nagoyameshi-btn-danger:hover {
+.ohanami-btn-danger:hover {
   background-color: #b8031c !important;
   border-color: #ae031a;
 }
 
-.nagoyameshi-swiper {
+.ohanami-swiper {
   width: 100%;
   height: 480px;
 }
 
-.nagoyameshi-swiper img {
+.ohanami-swiper img {
   width: 100%;
   height: 480px;
   object-fit: cover;
 }
 
-.nagoyameshi-overlay-background {
+.ohanami-overlay-background {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -200,11 +200,11 @@ footer {
   z-index: 10;
 }
 
-.nagoyameshi-overlay-text {
+.ohanami-overlay-text {
   padding: 0 70px;
 }
 
-.nagoyameshi-catchphrase-heading {
+.ohanami-catchphrase-heading {
   font-size: 36px;
   line-height: 1.5;
   font-family: 'Noto Serif JP', serif;
@@ -212,7 +212,7 @@ footer {
   text-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 60%);
 }
 
-.nagoyameshi-catchphrase-paragraph {
+.ohanami-catchphrase-paragraph {
   font-size: 16px;
   line-height: 2;
   font-family: 'Noto Serif JP', serif;
@@ -220,60 +220,60 @@ footer {
   text-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 60%);
 }
 
-.nagoyameshi-admin-search-box {
+.ohanami-admin-search-box {
   max-width: 240px;
 }
 
-.nagoyameshi-user-search-box {
+.ohanami-user-search-box {
   max-width: 300px;
 }
 
-.nagoyameshi-users-table {
+.ohanami-users-table {
   word-break: break-all;
 }
 
-.nagoyameshi-terms h2 {
+.ohanami-terms h2 {
   font-size: 1.125rem;
 }
 
-.nagoyameshi-card-link {
+.ohanami-card-link {
   transition: 0.3s;
 }
 
-.nagoyameshi-card-link:hover {
+.ohanami-card-link:hover {
   opacity: 0.7;
 }
 
-.nagoyameshi-vertical-card-image {
+.ohanami-vertical-card-image {
   width: 100%;
   height: 120px;
   object-fit: cover;
 }
 
-.nagoyameshi-horizontal-card-image {
+.ohanami-horizontal-card-image {
   width: 100%;
   height: 240px;
   object-fit: cover;
 }
 
-.nagoyameshi-category-name {
+.ohanami-category-name {
   text-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 60%);
 }
 
-.nagoyameshi-sort-box {
+.ohanami-sort-box {
   width: 150px;
 }
 
-.nagoyameshi-bg {
+.ohanami-bg {
   background-color: #d95204 !important;
 }
 
-.nagoyameshi-remove-favorite-button:hover {
+.ohanami-remove-favorite-button:hover {
   color: white;
 }
 
 /* 星評価ここから */
-.nagoyameshi-star-rating {
+.ohanami-star-rating {
   position: relative;
   z-index: 0;
   display: inline-block;
@@ -281,12 +281,12 @@ footer {
   color: #cccccc;
 }
 
-.nagoyameshi-star-rating:before,
-.nagoyameshi-star-rating:after {
+.ohanami-star-rating:before,
+.ohanami-star-rating:after {
   content: '★★★★★';
 }
 
-.nagoyameshi-star-rating:after {
+.ohanami-star-rating:after {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -296,37 +296,37 @@ footer {
   color: #f29f05;
 }
 
-.nagoyameshi-star-rating[data-rate="5"]:after {
+.ohanami-star-rating[data-rate="5"]:after {
   width: 100%;
 }
-.nagoyameshi-star-rating[data-rate="4.5"]:after {
+.ohanami-star-rating[data-rate="4.5"]:after {
   width: 90%;
 }
-.nagoyameshi-star-rating[data-rate="4"]:after {
+.ohanami-star-rating[data-rate="4"]:after {
   width: 80%;
 }
-.nagoyameshi-star-rating[data-rate="3.5"]:after {
+.ohanami-star-rating[data-rate="3.5"]:after {
   width: 70%;
 }
-.nagoyameshi-star-rating[data-rate="3"]:after {
+.ohanami-star-rating[data-rate="3"]:after {
   width: 60%;
 }
-.nagoyameshi-star-rating[data-rate="2.5"]:after {
+.ohanami-star-rating[data-rate="2.5"]:after {
   width: 50%;
 }
-.nagoyameshi-star-rating[data-rate="2"]:after {
+.ohanami-star-rating[data-rate="2"]:after {
   width: 40%;
 }
-.nagoyameshi-star-rating[data-rate="1.5"]:after {
+.ohanami-star-rating[data-rate="1.5"]:after {
   width: 30%;
 }
-.nagoyameshi-star-rating[data-rate="1"]:after {
+.ohanami-star-rating[data-rate="1"]:after {
   width: 20%;
 }
-.nagoyameshi-star-rating[data-rate="0.5"]:after {
+.ohanami-star-rating[data-rate="0.5"]:after {
   width: 10%;
 }
-.nagoyameshi-star-rating[data-rate="0"]:after {
+.ohanami-star-rating[data-rate="0"]:after {
   width: 0%;
 }
 /* 星評価ここまで */
@@ -350,8 +350,8 @@ footer {
 }
 
 /* クレジットカード番号入力フォーム */
-.nagoyameshi-card-holder-name,
-.nagoyameshi-card-element {
+.ohanami-card-holder-name,
+.ohanami-card-element {
   border-radius: .375rem;
   padding: 12px;
   border: 1px solid #ced4da;
@@ -360,23 +360,23 @@ footer {
   background: white;
 }
 
-.nagoyameshi-card-holder-name {
+.ohanami-card-holder-name {
   font-family: sans-serif;
   outline: none;
 }
 
-.nagoyameshi-card-error {
+.ohanami-card-error {
   display: none;
 }
 
 @media screen and (min-width: 1400px) {
-  .nagoyameshi-container {
+  .ohanami-container {
     max-width: 1200px;
   }
 }
 
 @media screen and (max-width: 991px) {
-  .nagoyameshi-admin-sidebar {
+  .ohanami-admin-sidebar {
     display: none;
   }
 

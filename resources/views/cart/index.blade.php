@@ -17,14 +17,14 @@
                     <form action="" method="post" name="removeFavoriteForm">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn-danger">解除</button>
+                        <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">解除</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container nagoyameshi-container pb-5">
+    <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-xxl-7 col-xl-8 col-lg-9 col-md-11">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
