@@ -20,7 +20,7 @@ class CartController extends Controller
     }
 
     public function store(Product $product){
-        $cart = new Cart;
+        $cart = new Cart();
         $cart->product_id = $product->id;
         $cart->user_id = Auth::id();
         $cart->save();
