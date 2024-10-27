@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @push('scripts')
-    <script src="{{ asset('/js/favorite-modal.js') }}"></script>
+    <script src="{{ asset('/js/cart-modal.js') }}"></script>
 @endpush
 
 @section('content')
     <!-- お気に入りの解除用モーダル -->
-    <div class="modal fade" id="removeFavoriteModal" tabindex="-1" aria-labelledby="removeFavoriteModalLabel">
+    <div class="modal fade" id="deleteCartModal" tabindex="-1" aria-labelledby="deleteCartModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="removeFavoriteModalLabel"></h5>
+                    <h5 class="modal-title" id="deleteCartModalLabel"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                 </div>
                 <div class="modal-footer">
-                    <form action="" method="post" name="removeFavoriteForm">
+                    <form action="" method="post" name="deleteCartForm">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">解除</button>
@@ -41,6 +41,9 @@
                         <p class="mb-0">{{ session('flash_message') }}</p>
                     </div>
                 @endif
+                @if($total_product == 0)
+                <h2 class="border-dark" >カート内に商品がありません</h2>
+                @else
 
                 <table class="table">
                     <thead>
@@ -55,20 +58,65 @@
                         @foreach ($cart_products as $cart_product)
                             <tr>
                                 <td>
-                                    <a href="{{ route('products.show', $cart_product) }}">
-                                        {{ $cart_product->name }}
+                                    <a href="{{ route('products.show', $cart_product->product_id) }}">
+                                        {{ $cart_product->product->name }}
                                     </a>
                                 </td>
-                                <td>{{ ($cart_product->price) }}</td>
+                                <td>{{ ($cart_product->product->price) }}</td>
                                 
                                 <td>
-                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#removeFavoriteModal" data-restaurant-id="{{ $cart_product->id }}" data-restaurant-name="{{ $cart_product->name }}">解除</a>
+                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteCartModal" data-restaurant-id="{{ $cart_product->product->id }}" data-restaurant-name="{{ $cart_product->product->name }}">解除</a>
                                 </td>
                             </tr>
                         @endforeach
+                        
                     </tbody>
                 </table>
-
+@endif
+                
+ <div class="offset-8 col-4">
+     <div class="row">
+         <div class="col-6">
+         @if($total_product == 0)
+         @elseif($total_product >= 5)
+         <h6>送料</h6>
+             <h2>合計</h2>
+         </div>
+         <div class="col-5">
+           <h6>1000円</h6>
+             <h2>{{$total+1000}}円</h2>
+         </div>
+         <div class="col-12 d-flex justify-content-end">
+             表示価格は税込みです
+         </div>
+         @else
+         <h6>送料</h6>
+             <h2>合計</h2>
+         </div>
+         <div class="col-5">
+           <h6>500円</h6>
+             <h2>{{$total+500}}円</h2>
+         </div>
+         <div class="col-12 d-flex justify-content-end">
+             表示価格は税込みです
+         </div>
+    @endif
+     </div>
+ </div>
+ 
+ <form method="post" action="{{route('cart.destroy', $user)}}" class="d-flex justify-content-end mt-3">
+             @csrf
+             <input type="hidden" name="_method" value="DELETE">
+             <a href="{{route('products.index')}}" class="btn ohanami-favorite-button shadow-sm w-20 border-dark ">
+                 買い物を続ける
+             </a>
+             @if ($total > 0)
+             <button type="submit" class="btn text-white shadow-sm w-20 ohanami-btn">購入を確定する</button>
+             @else
+             <button type="submit" class="btn text-white shadow-sm w-20 ohanami-btn disabled">購入を確定する</button>
+             @endif
+         </form>
+        
                 <div class="d-flex justify-content-center">
                     {{ $cart_products->links() }}
                 </div>

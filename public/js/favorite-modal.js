@@ -11,5 +11,5 @@ document.getElementById('removeFavoriteModal').addEventListener('show.bs.modal',
     let restaurantName = removeButton.dataset.restaurantName;
 
     removeFavoriteForm.action = `favorites/${restaurantId}`;
-    removeMessage.textContent = `「${restaurantName}」のお気に入りを解除してもよろしいですか？`
+    removeMessage.textContent = `「${restaurantName}」のいいね！を解除してもよろしいですか？`
 });
