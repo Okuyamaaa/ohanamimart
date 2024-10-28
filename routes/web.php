@@ -53,9 +53,9 @@ Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
     Route::get('favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('favorites/{product_id}', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::delete('favorites/{product_id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
-    Route::resource('cart', CartController::class)->only('index', 'destroy');
-    Route::post('cart/{product}', [CartController::class, 'store'])->name('cart.store');
-    // Route::delete('cart/{product_id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('users/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('users/cart/{product}', [CartController::class, 'store'])->name('cart.store');
+    Route::delete('users/cart', [CartController::class, 'destroy'])->name('cart.destroy');
 });
 Route::middleware(['guest:admin'])->group(function(){
     Route::get('company', [CompanyController::class, 'index'])->name('company.index');
