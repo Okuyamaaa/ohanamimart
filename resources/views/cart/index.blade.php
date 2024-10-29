@@ -65,7 +65,7 @@
                                 <td>{{ ($cart_product->product->price) }}</td>
                                 
                                 <td>
-                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteCartModal" data-restaurant-id="{{ $cart_product->product->id }}" data-restaurant-name="{{ $cart_product->product->name }}">解除</a>
+                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteCartModal" data-restaurant-id="{{ $cart_product->id }}" data-restaurant-name="{{ $cart_product->product->name }}">削除</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -104,36 +104,17 @@
      </div>
  </div>
  
- <form method="post" action="#" class="d-flex justify-content-end mt-3">
-             @csrf
-             <input type="hidden" name="_method" value="DELETE">
+ <div class="d-flex justify-content-end mt-3">
              <a href="{{route('products.index')}}" class="btn ohanami-favorite-button shadow-sm w-20 border-dark ">
                  買い物を続ける
              </a>
              @if ($total > 0)
-             <button type="submit" class="btn text-white shadow-sm w-20 ohanami-btn" data-bs-toggle="modal" data-bs-target="#buy-confirm-modal">購入を確定する</button>
+             <a href="#" class="btn text-white shadow-sm w-20 ohanami-btn">購入に進む</a>
              @else
-             <button type="submit" class="btn text-white shadow-sm w-20 ohanami-btn disabled" data-bs-toggle="modal" data-bs-target="#buy-confirm-modal">購入を確定する</button>
+             <button class="btn text-white shadow-sm w-20 ohanami-btn disabled">購入に進む</button>
              @endif
-         
+</div>
 
-         <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
-                             <button type="button" class="close" data-bs-dismiss="modal" aria-label="閉じる">
-                                 <span aria-hidden="true">&times;</span>
-                             </button>
-                         </div>
-                         <div class="modal-footer">
-                             <button type="button" class="btn ohanami-favorite-btn border-dark text-dark" data-bs-dismiss="modal">閉じる</button>
-                             <button type="submit" class="btn ohanami-btn">購入</button>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             </form>
                 <div class="d-flex justify-content-center">
                     {{ $cart_products->links() }}
                 </div>

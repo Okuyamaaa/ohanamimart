@@ -45,9 +45,10 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">店舗名</th>
-                            <th scope="col">郵便番号</th>
-                            <th scope="col">住所</th>
+                            <th scope="col">商品名</th>
+                            <th scope="col">カテゴリ</th>
+                            <th scope="col">価格</th>
+                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -59,8 +60,29 @@
                                         {{ $favorite_product->name }}
                                     </a>
                                 </td>
-                                <td>{{ substr($favorite_product->postal_code, 0, 3) . '-' . substr($favorite_product->postal_code, 3) }}</td>
-                                <td>{{ $favorite_product->address }}</td>
+                                <td>                        <div class="col d-flex">
+                            @if ($favorite_product->categories()->exists())
+                                @foreach ($favorite_product->categories as $index => $category)
+                                    <div>
+                                        @if ($index === 0)
+                                            {{ $category->name }}
+                                        @else
+                                            {{ '、' . $category->name }}
+                                        @endif
+                                    </div>
+                                @endforeach
+                            @else
+                                <span>未設定</span>
+                            @endif
+                        </div></td>
+                                <td>{{ $favorite_product->price }}</td>
+                                
+                                <td> @if ($cart->doesntExist())
+                            <form action="{{ route('cart.store', $favorite_product->id) }}" method="post" class="text-center">
+                                @csrf
+                                <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">カートに入れる</button>
+                            </form>
+                        @endif</td>
                                 <td>
                                     <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#removeFavoriteModal" data-restaurant-id="{{ $favorite_product->id }}" data-restaurant-name="{{ $favorite_product->name }}">解除</a>
                                 </td>

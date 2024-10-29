@@ -168,7 +168,7 @@
                                 <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">カートに入れる</button>
                             </form>
                         @else
-                            <form action="{{ route('cart.destroy', $product->id) }}" method="post" class="text-center">
+                            <form action="{{ route('carts.destroy', $product->id) }}" method="post" class="text-center">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-outline-primary shadow-sm w-50 ohanami-remove-favorite-button">カートから解除</button>

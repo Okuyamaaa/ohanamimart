@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Cart;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function index(){
+    public function index(Cart $cart){
 
        $favorite_products = Auth::user()->favorite_products()->orderBy('created_at', 'desc')->paginate(15);
+       $categories = Category::all();
+       
 
-        return view('favorites.index', compact('favorite_products'));
+
+        return view('favorites.index', compact('favorite_products', 'categories', 'cart'));
     }
 
     public function store($product_id){

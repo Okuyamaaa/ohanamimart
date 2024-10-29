@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -38,12 +39,21 @@ class CartController extends Controller
         return back()->with('flash_message', 'カートに追加しました。');
     }
 
-    public function destroy(Product $product){
-        $cart = Cart::where('product_id', $product->id);
-        
+    public function destroy(Product $product, Cart $cart){
+    
         $cart->delete();
-        
+    
 
         return back()->with('flash_message', 'カートから削除しました。');
     }
+    public function Cartdestroy(Product $product){
+        $cart  = Cart::where('product_id', $product->id);
+
+        $cart->delete();
+    
+
+        return back()->with('flash_message', 'カートから削除しました。');
+    }
+    
+
 }
