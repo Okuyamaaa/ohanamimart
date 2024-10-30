@@ -109,7 +109,7 @@
                  買い物を続ける
              </a>
              @if ($total > 0)
-             <a href="#" class="btn text-white shadow-sm w-20 ohanami-btn">購入に進む</a>
+             <a href="{{ route('checkout.index') }}" class="btn text-white shadow-sm w-20 ohanami-btn">購入に進む</a>
              @else
              <button class="btn text-white shadow-sm w-20 ohanami-btn disabled">購入に進む</button>
              @endif

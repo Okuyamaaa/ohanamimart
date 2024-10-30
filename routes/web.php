@@ -11,6 +11,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +62,10 @@ Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
 Route::middleware(['guest:admin'])->group(function(){
     Route::get('company', [CompanyController::class, 'index'])->name('company.index');
     Route::get('terms', [TermController::class, 'index'])->name('terms.index');
+});
+
+Route::controller(CheckoutController::class)->group(function () {
+    Route::get('checkout', 'index')->name('checkout.index');
+    Route::post('checkout', 'store')->name('checkout.store');
+    Route::get('checkout/success', 'success')->name('checkout.success');
 });

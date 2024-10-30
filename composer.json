@@ -11,7 +11,8 @@
         "kyslik/column-sortable": "^6.6",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "stripe/stripe-php": "^16.2"
     },
     "require-dev": {
         "laravel/breeze": "^1.29",
