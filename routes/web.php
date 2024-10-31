@@ -12,6 +12,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,15 +58,23 @@ Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
     Route::resource('cart', CartController::class)->only('index', 'destroy');
     Route::post('cart/{product}', [CartController::class, 'store'])->name('cart.store');
     Route::delete('{product}/cart', [CartController::class, 'Cartdestroy'])->name('carts.destroy');
-
+    Route::controller(CheckoutController::class)->group(function () {
+        Route::get('checkout', 'index')->name('checkout.index');
+        Route::post('checkout', 'store')->name('checkout.store');
+        Route::get('checkout/success', 'success')->name('checkout.success');
+        Route::get('checkout/purchased', 'purchased')->name('checkout.purchased');
+        Route::get('products/sale', [ProductController::class, 'sale'])->name('products.sale');
+    });
+     Route::get('sale/index', [SaleController::class, 'index'])->name('sale.index');
 });
 Route::middleware(['guest:admin'])->group(function(){
     Route::get('company', [CompanyController::class, 'index'])->name('company.index');
     Route::get('terms', [TermController::class, 'index'])->name('terms.index');
 });
 
-Route::controller(CheckoutController::class)->group(function () {
-    Route::get('checkout', 'index')->name('checkout.index');
-    Route::post('checkout', 'store')->name('checkout.store');
-    Route::get('checkout/success', 'success')->name('checkout.success');
-});
+// Route::controller(CheckoutController::class)->group(function () {
+//     Route::get('checkout', 'index')->name('checkout.index');
+//     Route::post('checkout', 'store')->name('checkout.store');
+//     Route::get('checkout/success', 'success')->name('checkout.success');
+//     Route::get('checkout/purchased', 'purchased')->name('checkout.purchased');
+// });

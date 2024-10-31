@@ -66,14 +66,13 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('user.index') }}">会員情報</a>
 
-                                @if (Auth::user())
-                                    <a class="dropdown-item" href="{{ route('cart.index')}}">予約一覧</a>
+                                
                                     <a class="dropdown-item" href="{{ route('favorites.index') }}">お気に入り一覧</a>
-                                    <a class="dropdown-item" href="{{ route('products.create') }}">出品</a>
-                                    <a class="dropdown-item" href="#">有料プラン解約</a>
-                                @else
-                                    <a class="dropdown-item" href="#">有料プラン登録</a>
-                                @endif
+                                    <a class="dropdown-item" href="{{ route('cart.index')}}">カート一覧</a>
+                                    <a class="dropdown-item" href="{{ route('checkout.purchased') }}">注文履歴</a>
+                                    <a class="dropdown-item" href="{{ route('products.create') }}">出品する</a>
+                                    <a class="dropdown-item" href="{{ route('sale.index')}}">出品リスト</a>
+                                
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

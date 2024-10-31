@@ -62,7 +62,7 @@
                                         {{ $cart_product->product->name }}
                                     </a>
                                 </td>
-                                <td>{{ ($cart_product->product->price) }}</td>
+                                <td>￥{{ ($cart_product->product->price) }}</td>
                                 
                                 <td>
                                     <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteCartModal" data-restaurant-id="{{ $cart_product->id }}" data-restaurant-name="{{ $cart_product->product->name }}">削除</a>
@@ -83,8 +83,8 @@
              <h2>合計</h2>
          </div>
          <div class="col-5">
-           <h6>1000円</h6>
-             <h2>{{$total+1000}}円</h2>
+           <h6>￥1000</h6>
+             <h2>￥{{$total+1000}}</h2>
          </div>
          <div class="col-12 d-flex justify-content-end">
              表示価格は税込みです
@@ -94,8 +94,8 @@
              <h2>合計</h2>
          </div>
          <div class="col-5">
-           <h6>500円</h6>
-             <h2>{{$total+500}}円</h2>
+           <h6>￥500</h6>
+             <h2>￥{{$total+500}}</h2>
          </div>
          <div class="col-12 d-flex justify-content-end">
              表示価格は税込みです

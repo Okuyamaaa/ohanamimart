@@ -111,5 +111,19 @@ foreach($cart_products as $cart_product){
         Cart::where('user_id', Auth::user()->id)->delete();
         return view('checkout.success');
     }
+    
+    public function purchased(Product $product){
+        $user = Auth::user();
+        $purchased_products = Product::where('purchaser_id', $user->id)->paginate(50);
+ 
+       
+        
+        $total_product = $purchased_products->total();
+       
 
+
+  
+
+        return view('checkout.purchased', compact('purchased_products', 'product', 'user', 'total_product'));
+    }
 }

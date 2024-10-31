@@ -32,11 +32,7 @@
                 </nav>
 
                 <h1 class="mb-2 text-center">{{ $product->name }}</h1>
-                <p class="text-center">
-                    <span class="ohanami-star-rating me-1" data-rate="{{ round($product->reviews->avg('score') * 2) / 2 }}"></span>
-                    {{ number_format(round($product->reviews->avg('score'), 2), 2) }}（{{ $product->reviews->count() }}件）
-                </p>
-
+       
                 @if (session('flash_message'))
                     <div class="alert alert-info" role="alert">
                         <p class="mb-0">{{ session('flash_message') }}</p>
@@ -89,7 +85,7 @@
                         </div>
 
                         <div class="col">
-                            <span>{{ number_format($product->price) }}円</span>
+                            <span>￥{{ number_format($product->price) }}</span>
                         </div>
                     </div>
 
@@ -106,7 +102,7 @@
                                         @if ($index === 0)
                                             {{ $category->name }}
                                         @else
-                                            {{ '、' . $category->name }}
+                                            {{$category->name }}
                                         @endif
                                     </div>
                                 @endforeach

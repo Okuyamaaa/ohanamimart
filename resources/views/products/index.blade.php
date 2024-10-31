@@ -124,7 +124,7 @@
                                                             @if ($index === 0)
                                                                 {{ $category->name }}
                                                             @else
-                                                                {{ '、' . $category->name }}
+                                                                {{ $category->name }}
                                                             @endif
                                                         </div>
                                                     @endforeach
@@ -133,12 +133,9 @@
                                                 @endif
                                             </div>
                                             <hr class="my-2">
-                                            <p class="mb-1">
-                                                <span class="ohanami-star-rating me-1" data-rate="{{ round($product->reviews->avg('score') * 2) / 2 }}"></span>
-                                                {{ number_format(round($product->reviews->avg('score'), 2), 2) }}（{{ $product->reviews->count() }}件）
-                                            </p>
+                                 
                                             <div class="mb-1">
-                                                <span>{{ number_format($product->price) }}円</span>
+                                                <span>￥{{ number_format($product->price) }}</span>
                                             </div>
                                             <p class="card-text">{{ mb_substr($product->description, 0, 75) }}@if (mb_strlen($product->description) > 75)...@endif</p>
                                         </div>

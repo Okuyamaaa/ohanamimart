@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class FavoriteController extends Controller
 {
     public function index(Cart $cart){
-
+        
        $favorite_products = Auth::user()->favorite_products()->orderBy('created_at', 'desc')->paginate(15);
        $categories = Category::all();
        

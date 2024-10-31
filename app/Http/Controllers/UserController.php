@@ -70,5 +70,16 @@ class UserController extends Controller
         return to_route('user.index')->with('flash_message', '会員情報を編集しました。');
 
 }
+public function sale(User $user, Product $product){
+    $user = Auth::user();
+    $user_products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
+
+    
+    $total_product = $user_products->total();
+
+
+     
+     return view('user.sale', compact('user_products', 'product', 'user', 'total_product'));
+}
 
 }

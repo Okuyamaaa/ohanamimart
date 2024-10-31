@@ -62,7 +62,7 @@
                                                             @if ($index === 0)
                                                                 {{ $category->name }}
                                                             @else
-                                                                {{ '、' . $category->name }}
+                                                                {{ $category->name }}
                                                             @endif
                                                         </div>
                                                     @endforeach

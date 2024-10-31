@@ -76,13 +76,22 @@
                             @endif
                         </div></td>
                                 <td>{{ $favorite_product->price }}</td>
-                                
-                                <td> @if ($cart->doesntExist())
+                                @if (DB::table('carts')->where('product_id', $favorite_product->id)->doesntExist())
+                                <td> 
                             <form action="{{ route('cart.store', $favorite_product->id) }}" method="post" class="text-center">
                                 @csrf
-                                <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">カートに入れる</button>
+                                <button type="submit" class="btn text-white shadow-sm w-10 ohanami-btn">カートに入れる</button>
                             </form>
-                        @endif</td>
+                        </td>
+                        @else
+                        <td>
+                        <form action="{{ route('carts.destroy', $favorite_product->id) }}" method="post" class="text-center">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-outline-primary shadow-sm w-10 ohanami-remove-favorite-button">カートから解除</button>
+                            </form>
+</td>
+                        @endif
                                 <td>
                                     <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#removeFavoriteModal" data-restaurant-id="{{ $favorite_product->id }}" data-restaurant-name="{{ $favorite_product->name }}">解除</a>
                                 </td>

@@ -1,9 +1,16 @@
 @extends('layouts.app')
  
  @section('content')
- <div class="container pt-5">
-     <div class="row justify-content-center">
-         <div class="col-xl-9">
+ <div class="container ohanami-container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-9 col-md-11">
+                <nav class="my-3 col-xxl-10" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('cart.index') }}">カート一覧</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">ご注文内容</li>
+                    </ol>
+                </nav>
              <h1 class="mb-5">ご注文内容</h1>
  
              <h5 class="fw-bold mb-3">購入商品</h5>
@@ -37,7 +44,7 @@
                                              <div class="row mb-2">
                                             
                                                  <div class="col-xxl-9">
-                                                     合計：￥{{ $cart_product->product->price }}
+                                                     価格：￥{{ $cart_product->product->price }}
                                                  </div>
                                              </div>
                                          </div>
@@ -67,7 +74,7 @@
                                  小計
                              </div>
                              <div class="col-md-7">
-                                 ￥{{ number_format($total) }}
+                             ￥{{ number_format($total) }}
                              </div>
                          </div>
  
@@ -76,7 +83,7 @@
                                  送料
                              </div>
                              <div class="col-md-7">
-                                 ￥1000
+                             ￥1000
                              </div>
                          </div>
  
@@ -85,7 +92,7 @@
                                  <span class="fs-5 fw-bold">合計</span>
                              </div>
                              <div class="col-7 d-flex align-items-center">
-                                 <span class="fs-5 fw-bold">￥{{ number_format($total) }}</span><span class="small">（税込）</span>
+                                 <span class="fs-5 fw-bold">￥{{ number_format($total+1000) }}</span><span class="small">（税込）</span>
                              </div>
                          </div>
                      </div>
@@ -96,7 +103,7 @@
                                  小計
                              </div>
                              <div class="col-md-7">
-                                 ￥{{ number_format($total) }}
+                             ￥{{ number_format($total) }}
                              </div>
                          </div>
  
@@ -105,7 +112,7 @@
                                  送料
                              </div>
                              <div class="col-md-7">
-                                 ￥500
+                             ￥500
                              </div>
                          </div>
  
@@ -114,7 +121,7 @@
                                  <span class="fs-5 fw-bold">合計</span>
                              </div>
                              <div class="col-7 d-flex align-items-center">
-                                 <span class="fs-5 fw-bold">￥{{ number_format($total) }}</span><span class="small">（税込）</span>
+                                 <span class="fs-5 fw-bold">￥{{ number_format($total+500) }}</span><span class="small">（税込）</span>
                              </div>
                          </div>
                      </div>

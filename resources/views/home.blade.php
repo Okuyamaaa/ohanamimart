@@ -145,6 +145,7 @@
                             @endif
                             <div class="card-body">
                                 <h3 class="card-title">{{ $user_product->name }}</h3>
+                                <div class="text-muted small mb-1">￥{{ $user_product->price }}</div>
                                 <div class="text-muted small mb-1">
                                     @if ($user_product->categories()->exists())
                                         @foreach ($user_product->categories as $index => $category)
@@ -160,7 +161,7 @@
                                         <span></span>
                                     @endif
                                 </div>
-                                <p class="card-text">{{ mb_substr($user_product->description, 0, 20) }}@if (mb_strlen($user_product->description) > 20)...@endif</p>
+                                <p class="card-text">{{ mb_substr($user_product->description, 0, 25) }}@if (mb_strlen($user_product->description) > 25)...@endif</p>
                             </div>
                         </div>
                     </a>

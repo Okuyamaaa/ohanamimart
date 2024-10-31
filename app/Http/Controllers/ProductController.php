@@ -67,9 +67,9 @@ class ProductController extends Controller
         $user_id = Auth::id();
         $categories = Category::all();
 
-        $category_ids = $product->categories->pluck('id')->toArray();
+        $category_id = $product->categories->pluck('id')->toArray();
 
-            return view('products.create', compact('product', 'categories', 'category_ids'));
+            return view('products.create', compact('product', 'categories', 'category_id'));
     }
 
     /**
@@ -97,8 +97,8 @@ class ProductController extends Controller
         $product->user_id = Auth::id();
         $product->save();
 
-        $category_ids = array_filter($request->input('category_ids'));
-        $product->categories()->sync($category_ids);
+        $category_id = array_filter($request->input('category_id'));
+        $product->categories()->sync($category_id);
 
         return to_route('products.index')->with('flash_message','商品を追加しました。');
     }
@@ -128,12 +128,12 @@ class ProductController extends Controller
         $user_id = Auth::id();
         $categories = Category::all();
 
-        $category_ids = $product->categories->pluck('id')->toArray();
+        $category_id = $product->categories->pluck('id')->toArray();
 
         if($product->user_id !== $user_id){
             return to_route('products.index', $product)->with('error_message', '不正なアクセスです。');
         }
-            return view('products.edit', compact('product', 'categories', 'category_ids'));
+            return view('products.edit', compact('product', 'categories', 'category_id'));
     }
 
     /**
@@ -160,8 +160,8 @@ class ProductController extends Controller
         $product->user_id = Auth::id();
         $product->update();
 
-        $category_ids = array_filter($request->input('category_ids'));
-        $product->categories()->sync($category_ids);
+        $category_id = $request->input('category_id');
+        $product->categories()->sync($category_id);
 
         return to_route('products.index')->with('flash_message','商品を編集しました。');
     }
@@ -174,4 +174,17 @@ class ProductController extends Controller
         $product->delete();
         return to_route('products.index')->with('flash_message', '商品を削除しました。');
     }
+
+    public function user(User $user, Product $product){
+        $user = Auth::user();
+        $user_products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
+    
+        
+        $total_product = $user_products->total();
+    
+    
+         
+         return view('products.user', compact('user_products', 'product', 'user', 'total_product'));
+    }
+    
 }

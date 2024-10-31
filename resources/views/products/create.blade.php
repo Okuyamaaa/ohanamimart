@@ -68,15 +68,15 @@
                         </div>
                     </div>
 
-                    @for ($i = 0; $i < 3; $i++)
+                   
                         <div class="form-group row mb-3">
-                            <label for="category{{ $i + 1 }}" class="col-md-5 col-form-label text-md-left fw-bold">カテゴリ{{ $i + 1 }}（3つまで選択可）</label>
+                            <label for="category" class="col-md-5 col-form-label text-md-left fw-bold">カテゴリ</label>
 
                             <div class="col-md-7">
-                                <select class="form-control form-select" id="category{{ $i + 1 }}" name="category_ids[]">
+                                <select class="form-control form-select" id="category" name="category_id">
                                     <option value="">選択なし</option>
                                     @foreach ($categories as $category)
-                                        @if ($category->id == old("category_ids.{$i}"))
+                                        @if ($category->id == old("category_id"))
                                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                         @else
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -85,7 +85,7 @@
                                 </select>
                             </div>
                         </div>
-                    @endfor
+                    
 
                    
                     <hr class="my-4">
