@@ -39,7 +39,7 @@
                     </div>
                 @endif
 
-                @if($product->user_id === Auth::id())
+                @if($product->user_id === Auth::id() && $product->purchaser_id == null)
                 <ul class="nav nav-tabs mb-2">
                     <li class="nav-item">
                         <a class="nav-link active text-white ohanami-bg" aria-current="page" href="{{ route('products.show', $product) }}">詳細</a>
@@ -78,7 +78,7 @@
                             <span>{{ $product->description }}</span>
                         </div>
                     </div>
-
+                    @if($product->purchaser_id == null)
                     <div class="row pb-2 mb-2 border-bottom">
                         <div class="col-2">
                             <span class="fw-bold">価格</span>
@@ -88,7 +88,17 @@
                             <span>￥{{ number_format($product->price) }}</span>
                         </div>
                     </div>
+                    @else
+                    <div class="row pb-2 mb-2 border-bottom">
+                        <div class="col-2">
+                            <span class="fw-bold"></span>
+                        </div>
 
+                        <div class="col">
+                            <span>SOLD OUT</span>
+                        </div>
+                    </div>
+                    @endif
 
                     <div class="row pb-2 mb-4 border-bottom">
                         <div class="col-2">
@@ -128,7 +138,7 @@
 
 
                 </div>
-                
+                @if($product->purchaser_id == null)
                     @guest
                         <form action="{{ route('favorites.store', $product->id) }}" method="post" class="text-center">
                             @csrf
@@ -173,7 +183,7 @@
                       
 
                     @endif
-                    
+                @endif
             </div>
         
         </div>

@@ -13,6 +13,7 @@ use App\Http\Controllers\TermController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,12 @@ Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
         Route::get('products/sale', [ProductController::class, 'sale'])->name('products.sale');
     });
      Route::get('sale/index', [SaleController::class, 'index'])->name('sale.index');
+
+     Route::get('user/{user}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+     Route::post('user/{user}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+     Route::get('user/{user}/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+     Route::patch('user/{user}/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+     Route::delete('user/{user}/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 });
 Route::middleware(['guest:admin'])->group(function(){
     Route::get('company', [CompanyController::class, 'index'])->name('company.index');

@@ -128,6 +128,31 @@
                         </div>
                     </div>
                 </div>
+                @if($review_total !== 0)
+                <div class="container ohanami-container">
+                    <h1 class="mb-8 text-center">--レビュー一覧--</h1>
+@foreach ($reviews as $review)
+                    <div class="card mb-3">
+                        <div class="card-header d-flex justify-content-between">
+                            <div>
+                                {{ $review->user->name }}さん
+                            </div>
+                            @if ($review->send_user_id === Auth::id())
+                                <div>
+                                    <a href="{{route('reviews.edit', [$user, $review])}}" class="me-2">編集</a>
+                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteReviewModal" data-review-id="{{ $review->id }}">削除</a>
+                                </div>
+                            @endif
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span class="ohanami-star-rating" data-rate="{{ $review->score }}"></span></li>
+                            <li class="list-group-item">{{ $review->content }}</li>
+                        </ul>
+                    </div>
+                @endforeach
+</div>
+@endif
+
             </div>
         </div>
     </div>

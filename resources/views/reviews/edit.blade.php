@@ -7,17 +7,15 @@
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('restaurants.index') }}">店舗一覧</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('restaurants.show', $restaurant) }}">店舗詳細</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('restaurants.reviews.index', $restaurant) }}">レビュー</a></li>
+ 
                         <li class="breadcrumb-item active" aria-current="page">レビュー編集</li>
                     </ol>
                 </nav>
 
-                <h1 class="mb-2 text-center">{{ $restaurant->name }}</h1>
+                <h1 class="mb-2 text-center">{{ $user->name }}</h1>
                 <p class="text-center">
-                    <span class="ohanami-star-rating me-1" data-rate="{{ round($restaurant->reviews->avg('score') * 2) / 2 }}"></span>
-                    {{ number_format(round($restaurant->reviews->avg('score'), 2), 2) }}（{{ $restaurant->reviews->count() }}件）
+                    <span class="ohanami-star-rating me-1" data-rate="{{ round($user->reviews->avg('score') * 2) / 2 }}"></span>
+                    {{ number_format(round($user->reviews->avg('score'), 2), 2) }}（{{ $user->reviews->count() }}件）
                 </p>
 
                 @if (session('flash_message'))
@@ -26,17 +24,7 @@
                     </div>
                 @endif
 
-                <ul class="nav nav-tabs mb-3">
-                    <li class="nav-item">
-                        <a class="nav-link link-dark" href="{{ route('restaurants.show', $restaurant) }}">トップ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link link-dark" href="{{ route('restaurants.reservations.create', $restaurant) }}">予約</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-white ohanami-bg" aria-current="page" href="{{ route('restaurants.reviews.index', $restaurant) }}">レビュー</a>
-                    </li>
-                </ul>
+
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -48,7 +36,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('restaurants.reviews.update', [$restaurant, $review]) }}">
+                <form method="POST" action="{{ route('reviews.update', [$user, $review]) }}">
                     @csrf
                     @method('patch')
 

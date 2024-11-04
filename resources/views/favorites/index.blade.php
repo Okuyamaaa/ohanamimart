@@ -56,7 +56,7 @@
                         @foreach ($favorite_products as $favorite_product)
                             <tr>
                                 <td>
-                                    <a href="{{ route('products.show', $favorite_product) }}">
+                                    <a class='col pd-5' href="{{ route('products.show', $favorite_product) }}">
                                         {{ $favorite_product->name }}
                                     </a>
                                 </td>
@@ -76,6 +76,11 @@
                             @endif
                         </div></td>
                                 <td>{{ $favorite_product->price }}</td>
+
+                                <td>
+                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#removeFavoriteModal" data-restaurant-id="{{ $favorite_product->id }}" data-restaurant-name="{{ $favorite_product->name }}">解除</a>
+                                </td>
+                                @if($favorite_product->purchaser_id == null)
                                 @if (DB::table('carts')->where('product_id', $favorite_product->id)->doesntExist())
                                 <td> 
                             <form action="{{ route('cart.store', $favorite_product->id) }}" method="post" class="text-center">
@@ -92,9 +97,8 @@
                             </form>
 </td>
                         @endif
-                                <td>
-                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#removeFavoriteModal" data-restaurant-id="{{ $favorite_product->id }}" data-restaurant-name="{{ $favorite_product->name }}">解除</a>
-                                </td>
+                        @endif
+                               
                             </tr>
                         @endforeach
                     </tbody>

@@ -133,10 +133,16 @@
                                                 @endif
                                             </div>
                                             <hr class="my-2">
-                                 
+                                            @if($product->purchaser_id !== null)
                                             <div class="mb-1">
+                                                <span>SOLD OUT</span>
+                                            </div>
+                                @else
+                                <div class="mb-1">
                                                 <span>￥{{ number_format($product->price) }}</span>
                                             </div>
+                                @endif
+
                                             <p class="card-text">{{ mb_substr($product->description, 0, 75) }}@if (mb_strlen($product->description) > 75)...@endif</p>
                                         </div>
                                     </div>

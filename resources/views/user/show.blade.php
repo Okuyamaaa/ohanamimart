@@ -1,6 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- レビューの削除用モーダル -->
+<div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteReviewModalLabel">レビューを削除してもよろしいですか？</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+            </div>
+            <div class="modal-footer">
+                @foreach($reviews as $review)
+                <form action="{{route('reviews.destroy', [$review, $user])}}" method="post" name="deleteReviewForm">
+                    @endforeach
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn text-white shadow-sm ohanami-btn-danger">削除</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container ohanami-container pb-5">
         <div class="row justify-content-center">
             <div class="col-md-9">
@@ -83,16 +104,19 @@
 </div>
 </div>
 
-
+@if($review_total !== 0)
+<div class="container ohanami-container">
+                    <h1 class="mb-8 text-center">--レビュー一覧--</h1>
 @foreach ($reviews as $review)
                     <div class="card mb-3">
                         <div class="card-header d-flex justify-content-between">
+                            
                             <div>
-                                {{ $review->user->name }}さん
+                                {{ $review_user->name}}さん
                             </div>
-                            @if ($review->user_id === Auth::id())
+                            @if ($review->send_user_id === Auth::id())
                                 <div>
-                                    <a href="#" class="me-2">編集</a>
+                                    <a href="{{route('reviews.edit', [$user, $review])}}" class="me-2">編集</a>
                                     <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteReviewModal" data-review-id="{{ $review->id }}">削除</a>
                                 </div>
                             @endif
@@ -103,7 +127,8 @@
                         </ul>
                     </div>
                 @endforeach
-
+</div>
+@endif
                     
                 </div>
             </div>

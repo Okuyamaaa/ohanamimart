@@ -48,9 +48,14 @@
                                              </div>
                                              <div class="row">
                                             
-                                            <div class="col-xxl-9">
+                                             <div class="col-xxl-9">
                                                <a href="{{route('user.show', $purchased_product->user_id)}}"> {{ $purchased_product->user->name }}</a>
-                                            </div>
+                                             </div>
+
+                                             <div class="col-xxl-9">
+                                               <a href="{{route('reviews.create', $purchased_product->user_id)}}">レビューを書く</a>
+                                             </div>
+                                   
                                         </div>
                                          </div>
                                      </div>

@@ -145,7 +145,12 @@
                             @endif
                             <div class="card-body">
                                 <h3 class="card-title">{{ $user_product->name }}</h3>
+                                
+                                @if($user_product->purchaser_id !== null)
+                                <div class="text-muted small mb-1">SOLD OUT</div>
+                                @else
                                 <div class="text-muted small mb-1">￥{{ $user_product->price }}</div>
+                                @endif
                                 <div class="text-muted small mb-1">
                                     @if ($user_product->categories()->exists())
                                         @foreach ($user_product->categories as $index => $category)

@@ -44,11 +44,20 @@
                                              <p class="fs-5 mb-2">
                                                  <a href="{{ route('products.show', $user_product->id) }}" class="link-dark text-decoration-none">{{ $user_product->name }}</a>
                                              </p>
+                                             @if($product->purchaser_id == null)
                                              <div class="row mb-2">
                                                  <div class="col-xxl-9">
                                                      価格：￥{{ $user_product->price }}
                                                  </div>
                                              </div>
+                                             @else
+                                             <div class="row mb-2">
+                                                 <div class="col-xxl-9">
+                                                     SOLD OUT
+                                                 </div>
+                                             </div>
+                                             @endif
+
                                          </div>
                                      </div>
                                  </div>

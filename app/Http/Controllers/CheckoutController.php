@@ -11,6 +11,7 @@ use Stripe\Checkout\Session;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Review;
 
 class CheckoutController extends Controller
 {
@@ -115,7 +116,7 @@ foreach($cart_products as $cart_product){
     public function purchased(Product $product){
         $user = Auth::user();
         $purchased_products = Product::where('purchaser_id', $user->id)->paginate(50);
- 
+        $reviews = Review::Where('send_user_id', $user->id);
        
         
         $total_product = $purchased_products->total();
@@ -124,6 +125,6 @@ foreach($cart_products as $cart_product){
 
   
 
-        return view('checkout.purchased', compact('purchased_products', 'product', 'user', 'total_product'));
+        return view('checkout.purchased', compact('purchased_products', 'product', 'user', 'total_product', 'reviews'));
     }
 }

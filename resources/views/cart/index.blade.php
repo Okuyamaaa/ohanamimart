@@ -56,6 +56,7 @@
                     </thead>
                     <tbody>
                         @foreach ($cart_products as $cart_product)
+                        @if($product->purchaser_id == null)
                             <tr>
                                 <td>
                                     <a href="{{ route('products.show', $cart_product->product_id) }}">
@@ -68,6 +69,7 @@
                                     <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteCartModal" data-restaurant-id="{{ $cart_product->id }}" data-restaurant-name="{{ $cart_product->product->name }}">削除</a>
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
                         
                     </tbody>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('content');
             $table->integer('score')->unsigned();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('send_user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

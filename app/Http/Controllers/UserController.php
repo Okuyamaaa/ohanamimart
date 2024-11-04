@@ -16,17 +16,29 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(User $user)
     {
-        $user = Auth::user();
-        return view('user.index', compact('user'));
+        
+        $reviews = Review::where('user_id', Auth::user()->id)->paginate(10);
+        $review_total = $reviews->total();
+        foreach($reviews as $review){
+            $review_user = User::find($review->send_user_id);
+            }
+        
+        return view('user.index', compact('user', 'reviews', 'review_total', 'review_user'));
     }
 
     public function show(User $user, Product $product){
+        
       $products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
-      $reviews = Review::where('product_id', $product->id)->orderBy('created_at', 'desc')->paginate(5);
+      $reviews = Review::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(5);
+      $review_total = $reviews->total();
+      foreach($reviews as $review){
+      $review_user = User::find($review->send_user_id);
+      }
+     
  
-        return view('user.show', compact('user', 'product', 'products', 'reviews'));
+        return view('user.show', compact('user', 'product', 'products', 'reviews', 'review_total', 'review_user'));
     }
 
    
@@ -69,17 +81,6 @@ class UserController extends Controller
         $user->update();
         return to_route('user.index')->with('flash_message', '会員情報を編集しました。');
 
-}
-public function sale(User $user, Product $product){
-    $user = Auth::user();
-    $user_products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
-
-    
-    $total_product = $user_products->total();
-
-
-     
-     return view('user.sale', compact('user_products', 'product', 'user', 'total_product'));
 }
 
 }
