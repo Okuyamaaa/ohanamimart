@@ -33,8 +33,9 @@ class TermController extends Controller
         ]);
 
         $term->content = $request->input('content');
+        $term->update();
 
-        return tp_route('admin.terms.index')->with('flash_message', '利用規約を編集しました。');
+        return to_route('admin.terms.index')->with('flash_message', '利用規約を編集しました。');
     }
 
 

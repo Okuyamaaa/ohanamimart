@@ -17,7 +17,15 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=>'テスト',
+            'representative'=>'テスト',
+            'address'=>'テスト',
+            'phone_number'=>'0000000',
+            'resption_hours'=>'テスト',
+            'URL'=>'テスト',
+            'establishment_date'=>'テスト',
+            'business'=>'テスト',
+            'capital'=>'テスト',
         ];
     }
 }

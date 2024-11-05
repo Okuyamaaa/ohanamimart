@@ -36,10 +36,7 @@ class TermTest extends TestCase
     }
     public function test_admin_can_access_index()
     {
-        $term =([
-            'content'=>'テスト',
-        
-    ]);
+        $term =term::factory()->create();
         $adminUser = Admin::factory()->create();
         $response = $this->actingAs($adminUser, 'admin')->get(route('admin.terms.index'));
 
@@ -51,10 +48,7 @@ class TermTest extends TestCase
 
     public function test_guest_cannot_access_edit()
     {
-        $term=([
-            'content'=>'テスト',
-        
-    ]);
+        $term=Term::factory()->create();
         $response = $this->get(route('admin.terms.edit', $term));
 
         $response->assertRedirect(route('admin.login'));
@@ -63,10 +57,7 @@ class TermTest extends TestCase
     }
     public function test_user_cannot_access_edit()
     {
-        $term=([
-            'content'=>'テスト',
-        
-    ]);
+        $term=Term::factory()->create();
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get(route('admin.terms.edit', $term));
 
@@ -76,10 +67,7 @@ class TermTest extends TestCase
     }
     public function test_admin_can_access_edit()
     {
-        $term=([
-            'content'=>'テスト',
-        
-    ]);
+        $term=Term::factory()->create();
         $adminUser = Admin::factory()->create();
         $response = $this->actingAs($adminUser, 'admin')->get(route('admin.terms.edit', $term));
 
@@ -89,10 +77,7 @@ class TermTest extends TestCase
     }
     
     public function test_guest_cannot_update(){
-        $old_term = ([
-            'content'=>'テスト',
-        
-    ]);
+        $old_term = Term::factory()->create();
 
         $term = ([
                 'content'=>'test',
@@ -104,10 +89,7 @@ class TermTest extends TestCase
         $this->assertDatabaseMissing('terms', $term);
     }
     public function test_user_cannot_update(){
-        $old_term = ([
-            'content'=>'テスト',
-        
-    ]);
+        $old_term = Term::factory()->create();
         $user=User::factory()->create();
         $term = ([
                 'content'=>'test',
@@ -120,14 +102,10 @@ class TermTest extends TestCase
     }
 
     public function test_admin_can_update(){
-        $old_term = ([
-            'content'=>'テスト',
-        
-    ]);
+        $old_term = Term::factory()->create();
         $adminUser=Admin::factory()->create();
         $term = ([
                 'content'=>'test',
-        
         ]);
 
         $response = $this->actingAs($adminUser, 'admin')->patch(route('admin.terms.update', $old_term), $term);
