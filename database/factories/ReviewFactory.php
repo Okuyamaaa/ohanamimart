@@ -19,8 +19,8 @@ class ReviewFactory extends Factory
         return [
             'content' => fake()->realText(250),
             'score' => fake()->numberBetween(1, 5),
-            'product_id' => fake()->numberBetween(7, 56),
-            'user_id' => fake()->numberBetween(2, 101),
+            'send_user_id' => fake()->randomNumber(),
+            'user_id' => fake()->randomNumber(),
         ];
     }
 }

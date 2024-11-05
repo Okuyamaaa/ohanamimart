@@ -16,8 +16,10 @@ class HomeController extends Controller
 
         $products = Product::all();
 
+        $transaction = Product::where('purchaser_id', '!=', 'null')->count();
 
-        return view('admin.home', compact('products', 'total_users', 'total_products'));
+
+        return view('admin.home', compact('products', 'total_users', 'total_products', 'transaction'));
 
     }
 }

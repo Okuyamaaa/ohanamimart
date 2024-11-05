@@ -49,7 +49,13 @@ class ProductTest extends TestCase
 
     public function test_guest_cannot_access_admin_products_show()
     {
-        $product = Product::factory()->create();
+        $user = User::factory()->create();
+        $product = [
+            'name' => 'テスト',
+            'description' => 'テスト',
+            'price' => 1,
+            'user_id' => $user->id
+        ];
 
         $response = $this->get(route('admin.products.show', $product));
 
@@ -59,9 +65,15 @@ class ProductTest extends TestCase
   
     public function test_user_cannot_access_admin_products_show()
     {
-        $product = Product::factory()->create();
-
         $user = User::factory()->create();
+        $product = [
+            'name' => 'テスト',
+            'description' => 'テスト',
+            'price' => 1,
+            'user_id' => $user->id
+        ];
+
+        
 
         $response = $this->actingAs($user)->get(route('admin.products.show', $product));
 
@@ -71,7 +83,13 @@ class ProductTest extends TestCase
    
     public function test_adminUser_can_access_admin_products_show()
     {
-        $product = Product::factory()->create();
+        $user = User::factory()->create();
+        $product = [
+            'name' => 'テスト',
+            'description' => 'テスト',
+            'price' => 1,
+            'user_id' => $user->id
+        ];
         
         $adminUser = Admin::factory()->create();
 
@@ -84,7 +102,13 @@ class ProductTest extends TestCase
 
     public function test_guest_cannot_access_admin_products_destroy()
     {
-        $product = Product::factory()->create();
+        $user = User::factory()->create();
+        $product = [
+            'name' => 'テスト',
+            'description' => 'テスト',
+            'price' => 1,
+            'user_id' => $user->id
+        ];
 
         $response = $this->get(route('admin.products.destroy', $product));
 
@@ -94,9 +118,15 @@ class ProductTest extends TestCase
   
     public function test_user_cannot_access_admin_products_destroy()
     {
-        $product = Product::factory()->create();
+
 
         $user = User::factory()->create();
+        $product = [
+            'name' => 'テスト',
+            'description' => 'テスト',
+            'price' => 1,
+            'user_id' => $user->id
+        ];
 
         $response = $this->actingAs($user)->get(route('admin.products.destroy', $product));
 
@@ -106,7 +136,13 @@ class ProductTest extends TestCase
    
     public function test_adminUser_can_access_admin_products_destroy()
     {
-        $product = Product::factory()->create();
+        $user = User::factory()->create();
+        $product = [
+            'name' => 'テスト',
+            'description' => 'テスト',
+            'price' => 1,
+            'user_id' => $user->id
+        ];
         
         $adminUser = Admin::factory()->create();
 

@@ -13,6 +13,23 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory()->count(20)->create();
+        $category1 = Category::firstOrCreate([
+            'name' => '手芸',
+        ]);
+        $category2 = Category::firstOrCreate([
+            'name' => 'アクセサリー',
+        ]);
+        $category3 = Category::firstOrCreate([
+            'name' => '財布',
+        ]);
+        $category4 = Category::firstOrCreate([
+            'name' => 'バッグ',
+        ]);
+        $category5 = Category::firstOrCreate([
+            'name' => '置物',
+        ]);
+        $category6 = Category::firstOrCreate([
+            'name' => '巾着',
+        ]);
     }
 }

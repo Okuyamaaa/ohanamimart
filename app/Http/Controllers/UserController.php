@@ -16,16 +16,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(User $user)
+    public function index()
     {
+        $user = Auth::user();
         
         $reviews = Review::where('user_id', Auth::user()->id)->paginate(10);
         $review_total = $reviews->total();
-        foreach($reviews as $review){
-            $review_user = User::find($review->send_user_id);
-            }
+
         
-        return view('user.index', compact('user', 'reviews', 'review_total', 'review_user'));
+        return view('user.index', compact('user', 'reviews', 'review_total'));
     }
 
     public function show(User $user, Product $product){
@@ -33,12 +32,10 @@ class UserController extends Controller
       $products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
       $reviews = Review::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(5);
       $review_total = $reviews->total();
-      foreach($reviews as $review){
-      $review_user = User::find($review->send_user_id);
-      }
+
      
  
-        return view('user.show', compact('user', 'product', 'products', 'reviews', 'review_total', 'review_user'));
+        return view('user.show', compact('user', 'product', 'products', 'reviews', 'review_total'));
     }
 
    

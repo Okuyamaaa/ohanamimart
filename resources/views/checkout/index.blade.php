@@ -120,8 +120,9 @@
                              <div class="col-5">
                                  <span class="fs-5 fw-bold">合計</span>
                              </div>
-                             <div class="col-7 d-flex align-items-center">
-                                 <span class="fs-5 fw-bold">￥{{ number_format($total+500) }}</span><span class="small">（税込）</span>
+                             <div class="col-5 d-flex align-items-center">
+                                 <span class="fs-5 fw-bold">￥{{ number_format($total+500) }}</span>
+                                 <span class="small">（税込）</span>
                              </div>
                          </div>
                      </div>

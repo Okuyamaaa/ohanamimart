@@ -27,8 +27,9 @@ class ReviewController extends Controller
         $review = new Review();
         $review->content = $request->input('content');
         $review->score = $request->input('score');
-        $review->user_id = $user->id;
         $review->send_user_id = Auth::id();
+        $review->user_id = $user->id;
+        
 
         $review->save();
 
@@ -48,39 +49,41 @@ class ReviewController extends Controller
 return to_route('user.show', $user)->with('error_message', '不正なアクセスです。');
     }
 
-    public function update(Request $request, Review $review, User $user){
+    public function update(Request $request, User $user, Review $review){
 
         $request->validate([
             'score'=> 'required|numeric|min:1|max:5',
             'content' => 'required',
         ]);
-
+        
         $user_id = Auth::id();
 
         if($review->user_id !== $user_id){
-            return to_route('user.show')->with('error_message', '不正なアクセスです。');
+            return to_route('user.show', $user)->with('error_message', '不正なアクセスです。');
         }
 
 
             $review->content = $request->input('content');
             $review->score = $request->input('score');
-            $review->user_id = $user->id;
             $review->send_user_id = Auth::id();
+            $review->user_id = $user->id;
+            
     
             $review->update();
     
-            return to_route('user.show')->with('flash_message', 'レビューを編集しました。');
+            return to_route('user.show', $user)->with('flash_message', 'レビューを編集しました。');
         
 
     }
 
-    public function destroy(Review $review, User $user){
+    public function destroy(User $user, Review $review){
         
        
-
+        
         if($review->send_user_id == Auth::id()){
             
             $review->delete();
+            
             return to_route('user.show', $user)->with('flash_message', 'レビューを削除しました。');
             
         }else{

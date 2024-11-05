@@ -112,12 +112,12 @@
                         <div class="card-header d-flex justify-content-between">
                             
                             <div>
-                                {{ $review_user->name}}さん
+                                {{ DB::table('users')->find($review->send_user_id)->name}}さん
                             </div>
                             @if ($review->send_user_id === Auth::id())
                                 <div>
                                     <a href="{{route('reviews.edit', [$user, $review])}}" class="me-2">編集</a>
-                                    <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteReviewModal" data-review-id="{{ $review->id }}">削除</a>
+                                    <a href="{{route('reviews.destroy', [$user, $review])}}" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteReviewModal" data-review-id="{{ $review->id }}">削除</a>
                                 </div>
                             @endif
                         </div>

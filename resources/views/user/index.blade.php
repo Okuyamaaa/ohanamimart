@@ -135,7 +135,7 @@
                     <div class="card mb-3">
                         <div class="card-header d-flex justify-content-between">
                             <div>
-                                {{ $review->user->name }}さん
+                                {{ DB::table('users')->find($review->send_user_id)->name }}さん
                             </div>
                             @if ($review->send_user_id === Auth::id())
                                 <div>

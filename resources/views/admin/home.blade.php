@@ -23,6 +23,14 @@
                         </div>
                     </div>
                    
+                    <div class="col">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">取引件数</h5>
+                                <p class="card-text">{{ $transaction }}件</p>
+                            </div>
+                        </div>
+                    </div>
                    
                 </div>
             </div>
