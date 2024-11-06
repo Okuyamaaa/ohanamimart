@@ -20,14 +20,14 @@
     </div>
 </div>
 
-    <div class="container ohanami-container pb-5">
+    <div class="container ohanami-container p-4">
         <div class="row justify-content-center">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">店舗一覧</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">店舗詳細</li>
+                        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">商品一覧</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">商品詳細</li>
                     </ol>
                 </nav>
 

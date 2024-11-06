@@ -46,10 +46,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:admin
 
     Route::resource('terms', Admin\TermController::class);
 });
+
 Route::group(['middleware' => 'guest:admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });
-Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
+
+Route::middleware(['guest:admin', 'auth', 'verified'])->group(function(){
     Route::resource('user', UserController::class);
     Route::resource('products', ProductController::class);
     // Route::resource('favorites', FavoriteController::class);
@@ -74,6 +76,7 @@ Route::group(['middleware' => 'auth','verify','guest:admin'], function () {
      Route::patch('user/{user}/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
      Route::delete('user/{user}/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 });
+
 Route::middleware(['guest:admin'])->group(function(){
     Route::get('company', [CompanyController::class, 'index'])->name('company.index');
     Route::get('terms', [TermController::class, 'index'])->name('terms.index');

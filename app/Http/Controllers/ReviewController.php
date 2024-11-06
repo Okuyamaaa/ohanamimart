@@ -50,25 +50,24 @@ return to_route('user.show', $user)->with('error_message', '不正なアクセ�
     }
 
     public function update(Request $request, User $user, Review $review){
-
+        
         $request->validate([
             'score'=> 'required|numeric|min:1|max:5',
             'content' => 'required',
         ]);
         
         $user_id = Auth::id();
-
-        if($review->user_id !== $user_id){
+        
+        if($review->send_user_id !== $user_id){
             return to_route('user.show', $user)->with('error_message', '不正なアクセスです。');
+            
         }
-
+        
 
             $review->content = $request->input('content');
             $review->score = $request->input('score');
             $review->send_user_id = Auth::id();
             $review->user_id = $user->id;
-            
-    
             $review->update();
     
             return to_route('user.show', $user)->with('flash_message', 'レビューを編集しました。');
@@ -78,7 +77,7 @@ return to_route('user.show', $user)->with('error_message', '不正なアクセ�
 
     public function destroy(User $user, Review $review){
         
-       
+        
         
         if($review->send_user_id == Auth::id()){
             

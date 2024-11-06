@@ -11,7 +11,7 @@
             </div>
             <div class="modal-footer">
                 @foreach($reviews as $review)
-                <form action="{{route('reviews.destroy', [$review, $user])}}" method="post" name="deleteReviewForm">
+                <form action="{{route('reviews.destroy', [$user, $review])}}" method="post" name="deleteReviewForm">
                     @endforeach
                     @csrf
                     @method('delete')
