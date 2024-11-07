@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
-    public function index(Cart $cart, User $user){
+    public function index(Cart $cart,){
         
        $favorite_products = Auth::user()->favorite_products()->orderBy('created_at', 'desc')->paginate(15);
        $categories = Category::all();
        
 
 
-        return view('favorites.index', compact('favorite_products', 'categories', 'cart', 'user'));
+        return view('favorites.index', compact('favorite_products', 'categories', 'cart'));
     }
 
     public function store($product_id){

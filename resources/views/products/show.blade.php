@@ -168,7 +168,7 @@
 
                          @if($product->user_id !== Auth::id())
                      
-                        @if ($cart->doesntExist())
+                        @if (DB::table('carts')->where('user_id', Auth::id())->where('product_id', $product->id)->doesntExist())
                             <form action="{{ route('cart.store', $product->id) }}" method="post" class="text-center">
                                 @csrf
                                 <button type="submit" class="btn text-white shadow-sm w-50 ohanami-btn">カートに入れる</button>

@@ -129,13 +129,16 @@
                      @endif
  
                      <div class="mb-4">
-                         @if ($total > 0)
+                         @if ($total > 0 && DB::table('products')->find($product->purchaser_id) == null)
                              <form action="{{ route('checkout.store') }}" method="POST">
                                  @csrf
                                  <button type="submit" class="btn text-white shadow-sm w-20 ohanami-btn">お支払い</a>
                              </form>
                          @else
                              <button class="btn text-white shadow-sm w-20 ohanami-btn disabled">お支払い</button>
+                             <br>
+                             <span class="text-danger">購入品がないか、すでに購入されている商品が選択されています。</span>
+                             
                          @endif
                      </div>
                  </div>

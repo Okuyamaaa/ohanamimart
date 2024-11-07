@@ -10,6 +10,7 @@
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
                 <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('products.index') }}">商品一覧</a></li>
                         <li class="breadcrumb-item active" aria-current="page">出品する</li>
                     </ol>

@@ -175,16 +175,6 @@ class ProductController extends Controller
         return to_route('products.index')->with('flash_message', '商品を削除しました。');
     }
 
-    public function user(User $user, Product $product){
-        $user = Auth::user();
-        $user_products = Product::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
-    
-        
-        $total_product = $user_products->total();
-    
-    
-         
-         return view('products.user', compact('user_products', 'product', 'user', 'total_product'));
-    }
+
     
 }
