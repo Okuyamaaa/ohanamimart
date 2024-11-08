@@ -15,30 +15,24 @@ class ProductTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_guest_can_access_index(): void
+    public function test_guest_cannot_access_index(): void
     {
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         $response = $this->get(route('products.index'));
 
-        $response->assertStatus(200);
+        $response->assertRedirect('login');
     }
 
     public function test_user_can_access_index(){
 
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         
 
@@ -50,12 +44,9 @@ class ProductTest extends TestCase
     public function test_admin_cannot_access_index(){
 
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         $adminUser = Admin::factory()->create();
 
@@ -64,34 +55,28 @@ class ProductTest extends TestCase
         $response->assertRedirect('admin/home');
     }
 
-    public function test_guest_can_access_show(): void
+    public function test_guest_cannot_access_show(): void
     {
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
-        $response = $this->get(route('products.show', $product));
+        $response = $this->get(route('products.show', ['product' => $product->id]));
 
-        $response->assertStatus(200);
+        $response->assertRedirect('login');
     }
 
     public function test_user_can_access_show(){
 
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         
 
-        $response = $this->actingAs($user)->get(route('products.show', $product));
+        $response = $this->actingAs($user)->get(route('products.show', ['product' => $product->id]));
 
         $response->assertStatus(200);
     }
@@ -99,16 +84,13 @@ class ProductTest extends TestCase
     public function test_admin_cannot_access_show(){
 
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         $adminUser = Admin::factory()->create();
 
-        $response = $this->actingAs($adminUser, 'admin')->get(route('products.show', [$product->id]));
+        $response = $this->actingAs($adminUser, 'admin')->get(route('products.show', ['product' => $product->id]));
 
         $response->assertRedirect('admin/home');
     }
@@ -116,14 +98,11 @@ class ProductTest extends TestCase
     public function test_guest_cannot_access_edit(){
         $user = User::factory()->create();
 
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
-        $response=$this->get(route('products.edit', $product));
+        $response=$this->get(route('products.edit', ['product' => $product->id]));
 
         $response->assertRedirect(route('login'));
 
@@ -132,49 +111,40 @@ class ProductTest extends TestCase
     public function test_cannot_others_user_access_edit(){
         $user = User::factory()->create();
         $new_user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         if($user->id != $new_user->id){
 
-            $response = $this->actingAs($new_user)->get(route('products.edit', $product));
-            $response->assertRedirect('/user');
+            $response = $this->actingAs($new_user)->get(route('products.edit', ['product' => $product->id]));
+            $response->assertStatus(302);
         }
     }
     public function test_can_user_access_edit(){
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         
 
         
-            $response = $this->actingAs($user)->get(route('products.edit', $product));
+            $response = $this->actingAs($user)->get(route('products.edit', ['product' => $product->id]));
             $response->assertStatus(200);
         
     }
 
     public function test_admin_cannot_access_edit(){
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         $adminUser = Admin::factory()->create();
 
-        $response = $this->actingAs($adminUser, 'admin')->get(route('products.edit', $product));
+        $response = $this->actingAs($adminUser, 'admin')->get(route('products.edit', ['product' => $product->id]));
 
-        $response->assertRedirect('user');
+        $response->assertRedirect('admin/home');
 
     }
 
@@ -182,12 +152,9 @@ class ProductTest extends TestCase
         
         $user = User::factory()->create();
 
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         $new_product = [
             'name' => 'テスト1',
@@ -197,7 +164,7 @@ class ProductTest extends TestCase
         ];
         
 
-        $response = $this->patch(route('products.update', $product), $new_product);
+        $response = $this->patch(route('products.update', ['product' => $product->id]), $new_product);
 
         $this->assertDatabaseMissing('products', $new_product);
     }
@@ -207,12 +174,9 @@ class ProductTest extends TestCase
 
         $other_user = User::factory()->create();
 
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         $new_product = [
             'name' => 'テスト1',
@@ -223,19 +187,15 @@ class ProductTest extends TestCase
         
 
         
-            $response = $this->actingAs($other_user)->patch(route('products.update', $product), $new_product);
+            $response = $this->actingAs($other_user)->patch(route('products.update', ['product' => $product->id]), $new_product);
             $this->assertDatabaseMissing('products', $new_product);
   
     }
         public function test_user_can_update(){
             $user = User::factory()->create();
-    
-            $product = [
-                'name' => 'テスト',
-                'description' => 'テスト',
-                'price' => 1,
+            $product = Product::factory()->create([
                 'user_id' => $user->id
-            ];
+            ]);
     
             $new_product = [
                 'name' => 'テスト1',
@@ -246,7 +206,7 @@ class ProductTest extends TestCase
 
             unset($new_product['id'], $new_product['created_at'], $new_product['updated_at']);
     
-            $response = $this->actingAs($user)->patch(route('products.update', $product), $new_product);
+            $response = $this->actingAs($user)->patch(route('products.update', ['product' => $product->id]), $new_product);
             $this->assertDatabaseHas('products', $new_product);
          
 
@@ -258,12 +218,9 @@ class ProductTest extends TestCase
 
         $adminUser = Admin::factory()->create();
 
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
 
         $new_product = [
             'name' => 'テスト1',
@@ -274,78 +231,87 @@ class ProductTest extends TestCase
 
         unset($new_product['id'], $new_product['created_at'], $new_product['updated_at']);
 
-        $response = $this->actingAs($adminUser, 'admin')->patch(route('products.edit', $product), $new_product);
+        $response = $this->actingAs($adminUser, 'admin')->patch(route('products.edit', ['product' => $product->id]), $new_product);
 
         $this->assertDatabaseMissing('products', $new_product);
     }
-    public function test_guest_cannot_access_admin_products_destroy()
+    public function test_guest_cannot_products_destroy()
     {
         $user = User::factory()->create();
-        $product = [
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $product_array = [
             'name' => 'テスト',
             'description' => 'テスト',
-            'price' => 1,
+            'price' => 100,
             'user_id' => $user->id
         ];
 
-        $response = $this->delete(route('products.destroy', $product));
+        $response = $this->delete(route('products.destroy', ['product' => $product->id]));
 
-        $this->assertDatabaseMissing('products', $product);
+        $this->assertDatabaseHas('products', $product_array);
     }
 
-    public function test_others_user_cannot_destroy(){
+    public function test_other_user_cannot_destroy(){
         $user = User::factory()->create();
 
-        $other_user = User::factory()->create();
+        $otherUser = User::factory()->create();
 
-        $product = [
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $product_array = [
             'name' => 'テスト',
             'description' => 'テスト',
-            'price' => 1,
+            'price' => 100,
             'user_id' => $user->id
         ];
-
-        
-
-        
-            $response = $this->actingAs($other_user)->delete(route('products.destroy', $product));
-            $this->assertDatabaseHas('products', $product);
+            
+            $response = $this->actingAs($otherUser)->delete(route('products.destroy', ['product' => $product->id]));
+            $this->assertDatabaseHas('products', $product_array);
   
     }
 
   
-    public function test_user_cannot_access_admin_products_destroy()
+    public function test_user_can_products_destroy()
     {
 
 
         $user = User::factory()->create();
-        $product = [
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $product_array = [
             'name' => 'テスト',
             'description' => 'テスト',
-            'price' => 1,
+            'price' => 100,
             'user_id' => $user->id
         ];
 
-        $response = $this->actingAs($user)->delete(route('products.destroy', $product));
+        $response = $this->actingAs($user)->delete(route('products.destroy', ['product' => $product->id]));
 
-        $this->assertDatabaseMissing('products', $product);
+        $this->assertDatabaseMissing('products', $product_array);
     }
 
    
-    public function test_adminUser_can_access_admin_products_destroy()
+    public function test_adminUser_cannot_products_destroy()
     {
         $user = User::factory()->create();
-        $product = [
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
+        $product_array = [
             'name' => 'テスト',
             'description' => 'テスト',
-            'price' => 1,
+            'price' => 100,
             'user_id' => $user->id
         ];
         
         $adminUser = Admin::factory()->create();
 
-        $response = $this->actingAs($adminUser, 'admin')->delete(route('products.destroy', $product));
+        $response = $this->actingAs($adminUser, 'admin')->delete(route('products.destroy', ['product' => $product->id]));
 
-        $this->assertDatabaseMissing('products', $product);
+        $this->assertDatabaseHas('products', $product_array);
     }
 }

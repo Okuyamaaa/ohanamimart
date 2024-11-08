@@ -40,12 +40,9 @@ class FavoriteTest extends TestCase
         $adminUser = Admin::factory()->create();
         
         $user = User::factory()->create();
-        $product =  [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         
 
         $response = $this->actingAs($adminUser, 'admin')->get(route('favorites.index'));
@@ -55,16 +52,13 @@ class FavoriteTest extends TestCase
 
     public function test_guest_cannot_store(): void
     {
-        $other_user = User::factory()->create();
+        
         $user = User::factory()->create();
-        $product =  [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
-            'user_id' => $other_user->id
-        ];
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
         $product_user =[
-            'restaurant_id' => $product->id,
+            'product_id' => $product->id,
             'user_id' => $user->id
         ];
 
@@ -80,12 +74,9 @@ class FavoriteTest extends TestCase
 
         $other_user = User::factory()->create();
         $user = User::factory()->create();
-        $product =  [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
-            'user_id' => $other_user->id
-        ];
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
         $product_user =[
             'product_id' => $product->id,
             'user_id' => $user->id
@@ -103,12 +94,9 @@ class FavoriteTest extends TestCase
     {
         $other_user = User::factory()->create();
         $user = User::factory()->create();
-        $product =  [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
-            'user_id' => $other_user->id
-        ];
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
         $product_user =[
             'product_id' => $product->id,
             'user_id' => $user->id
@@ -124,18 +112,15 @@ class FavoriteTest extends TestCase
     {
         $other_user = User::factory()->create();
         $user = User::factory()->create();
-        $product =  [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
-            'user_id' => $other_user->id
-        ];
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
         $product_user =[
             'product_id' => $product->id,
             'user_id' => $user->id
         ];
 
-        $product->users()->attach($user->id);
+        $user->favorite_products()->attach($product->id);
 
         $response = $this->delete(route('favorites.destroy', $product->id));
 
@@ -150,18 +135,15 @@ class FavoriteTest extends TestCase
   
         $other_user = User::factory()->create();
         $user = User::factory()->create();
-        $product =  [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
-            'user_id' => $other_user->id
-        ];
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
         $product_user =[
             'product_id' => $product->id,
             'user_id' => $user->id
         ];
 
-        $product->users()->attach($user->id);
+        $user->favorite_products()->attach($product->id);
 
 
         
@@ -175,18 +157,15 @@ class FavoriteTest extends TestCase
     {
         $other_user = User::factory()->create();
         $user = User::factory()->create();
-        $product =  [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
-            'user_id' => $other_user->id
-        ];
+        $product = Product::factory()->create([
+            'user_id' => $user->id
+        ]);
         $product_user =[
             'product_id' => $product->id,
             'user_id' => $user->id
         ];
 
-        $product->users()->attach($user->id);
+        $user->favorite_products()->attach($product->id);
 
         $adminUser = Admin::factory()->create();
         $response = $this->actingAs($adminUser, 'admin')->delete(route('favorites.destroy', $product->id));

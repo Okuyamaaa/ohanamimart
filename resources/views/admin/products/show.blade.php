@@ -34,7 +34,7 @@
 
                 <div class="d-flex justify-content-end align-items-end mb-3">
                     <div>
-                        <a href="{{ route('admin.products.edit', $product) }}" class="me-2">編集</a>
+                        
                         <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#deleteRestaurantModal">削除</a>
                     </div>
                 </div>

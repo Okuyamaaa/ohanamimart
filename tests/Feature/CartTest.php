@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -45,111 +46,94 @@ class CartTest extends TestCase
     {
         $auth_user = User::factory()->create();
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         $cart = [
         'product_id' => $product->id,
-        'user_id' => $auth_user->id];
-        $response = $this->post(route('cart.store'));
+        'user_id' => $user->id];
+        $response = $this->post(route('cart.store', ['product' => $product->id]));
 
-        $this->assertDatebaseMissing('carts', $cart);
+        $this->assertDatabaseMissing('carts', $cart);
     }
     public function test_user_can_store(): void
     {
         $auth_user = User::factory()->create();
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         $cart = [
         'product_id' => $product->id,
-        'user_id' => $auth_user->id];
+        'user_id' => $user->id];
 
-        $response = $this->actingAs($auth_user)->post(route('cart.store'));
+        $response = $this->actingAs($user)->post(route('cart.store', ['product' => $product->id]));
 
-        $this->assertDatebaseHas('carts', $cart);
+        $this->assertDatabaseHas('carts', $cart);
     }
 
-    public function test_admin_cannot_access_create(): void
+    public function test_admin_cannot_access_store(): void
     {
         $auth_user = User::factory()->create();
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         $cart = [
         'product_id' => $product->id,
-        'user_id' => $auth_user->id];
+        'user_id' => $user->id];
         $admin = Admin::factory()->create();
 
-        $response = $this->actingAs($admin, 'admin')->get(route('cart.create'));
+        $response = $this->actingAs($admin, 'admin')->get(route('cart.store', ['product' => $product->id]));
 
-        $this->assertDatebaseMissing('carts', $cart);
+        $this->assertDatabaseMissing('carts', $cart);
     }
 
     public function test_guest_cannot_destroy(): void
     {
         $auth_user = User::factory()->create();
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         $cart = [
         'product_id' => $product->id,
         'user_id' => $auth_user->id];
-        $response = $this->delete(route('cart.destory'));
 
-        $this->assertDatebaseHas('carts', $cart);
+        $response = $this->delete(route('cart.destroy', ['cart' => $product->id]));
+
+        $this->assertDatabaseHas('carts', $cart);
     }
     public function test_user_can_destroy(): void
     {
         $auth_user = User::factory()->create();
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         $cart = [
         'product_id' => $product->id,
         'user_id' => $auth_user->id];
 
-        $response = $this->actingAs($auth_user)->post(route('cart.destroy'));
+        $response = $this->actingAs($auth_user)->delete(route('cart.destroy', ['cart' => $product->id]));
 
-        $this->assertDatebaseMissing('carts', $cart);
+        $this->assertDatabaseMissing('carts', $cart);
     }
 
     public function test_admin_cannot_access_destroy(): void
     {
         $auth_user = User::factory()->create();
         $user = User::factory()->create();
-        $product = [
-            'name' => 'テスト',
-            'description' => 'テスト',
-            'price' => 1,
+        $product = Product::factory()->create([
             'user_id' => $user->id
-        ];
+        ]);
         $cart = [
         'product_id' => $product->id,
         'user_id' => $auth_user->id];
         $admin = Admin::factory()->create();
 
-        $response = $this->actingAs($admin, 'admin')->get(route('cart.destroy'));
+        $response = $this->actingAs($admin, 'admin')->delete(route('cart.destroy', ['cart' => $product->id]));
 
-        $this->assertDatebaseHas('carts', $cart);
+        $this->assertDatabaseHas('carts', $cart);
     }
 }
