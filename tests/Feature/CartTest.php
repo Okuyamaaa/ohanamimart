@@ -97,12 +97,15 @@ class CartTest extends TestCase
             'user_id' => $user->id
         ]);
         $cart = [
-        'product_id' => $product->id,
-        'user_id' => $auth_user->id];
+            'product_id' => $product->id,
+            'user_id' => $auth_user->id,
+        ];
 
         $response = $this->delete(route('cart.destroy', ['cart' => $product->id]));
 
-        $this->assertDatabaseHas('carts', $cart);
+        $this->assertDatabaseHas('carts', [
+            'product_id' => $product->id,
+            'user_id' => $auth_user->id,]);
     }
     public function test_user_can_destroy(): void
     {
@@ -112,12 +115,15 @@ class CartTest extends TestCase
             'user_id' => $user->id
         ]);
         $cart = [
-        'product_id' => $product->id,
-        'user_id' => $auth_user->id];
+            'product_id' => $product->id,
+            'user_id' => $auth_user->id,
+        ];
 
         $response = $this->actingAs($auth_user)->delete(route('cart.destroy', ['cart' => $product->id]));
 
-        $this->assertDatabaseMissing('carts', $cart);
+        $this->assertDatabaseMissing('carts', [
+            'product_id' => $product->id,
+            'user_id' => $auth_user->id,]);
     }
 
     public function test_admin_cannot_access_destroy(): void
@@ -128,12 +134,15 @@ class CartTest extends TestCase
             'user_id' => $user->id
         ]);
         $cart = [
-        'product_id' => $product->id,
-        'user_id' => $auth_user->id];
+            'product_id' => $product->id,
+            'user_id' => $auth_user->id,
+        ];
         $admin = Admin::factory()->create();
 
         $response = $this->actingAs($admin, 'admin')->delete(route('cart.destroy', ['cart' => $product->id]));
 
-        $this->assertDatabaseHas('carts', $cart);
+        $this->assertDatabaseHas('carts', [
+            'product_id' => $product->id,
+            'user_id' => $auth_user->id,]);
     }
 }
