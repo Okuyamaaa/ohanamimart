@@ -97,7 +97,7 @@ class ProductController extends Controller
         $product->user_id = Auth::id();
         $product->save();
 
-        $category_id = array_filter($request->input('category_id'));
+        $category_id = $request->input('category_id');
         $product->categories()->sync($category_id);
 
         return to_route('products.index')->with('flash_message','商品を追加しました。');
