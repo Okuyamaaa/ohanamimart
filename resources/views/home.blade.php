@@ -57,7 +57,7 @@
             <div class="col">
                 <a href="{{ url("/products/?category_id={$categories->where('name', 'バッグ')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/bag.jpg') }}" class="card-img ohanami-vertical-card-image" alt="バッグ">
+                        <img src="{{ asset('/images/handbag.jpg') }}" class="card-img ohanami-vertical-card-image" alt="バッグ">
                         <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
                             <h3 class="card-title ohanami-category-name">バッグ</h5>
                         </div>
@@ -68,7 +68,7 @@
             <div class="col">
                 <a href="{{ url("/products/?category_id={$categories->where('name', '巾着')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/pochi.jpg') }}" class="card-img ohanami-vertical-card-image" alt="巾着">
+                        <img src="{{ asset('/images/kinchaku.jpg') }}" class="card-img ohanami-vertical-card-image" alt="巾着">
                         <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
                             <h3 class="card-title ohanami-category-name">巾着</h5>
                         </div>
@@ -79,7 +79,7 @@
             <div class="col">
                 <a href="{{ url("/products/?category_id={$categories->where('name', '財布')->value('id')}") }}" class="ohanami-card-link">
                     <div class="card text-white">
-                        <img src="{{ asset('/images/saifu.jpg') }}" class="card-img ohanami-vertical-card-image" alt="財布">
+                        <img src="{{ asset('/images/wallet.jpg') }}" class="card-img ohanami-vertical-card-image" alt="財布">
                         <div class="card-img-overlay d-flex justify-content-center align-items-center ohanami-overlay-background">
                             <h3 class="card-title ohanami-category-name">財布</h5>
                         </div>
