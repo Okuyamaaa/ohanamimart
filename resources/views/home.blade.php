@@ -44,7 +44,7 @@
             <h2 class="mb-3">キーワードから探す</h2>
             <form method="GET" action="{{ route('products.index') }}" class="ohanami-user-search-box">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="店舗名・エリア・カテゴリ" name="keyword">
+                    <input type="text" class="form-control" placeholder="商品名・カテゴリ" name="keyword">
                     <button type="submit" class="btn text-white shadow-sm ohanami-btn">検索</button>
                 </div>
             </form>
@@ -178,7 +178,7 @@
                 </div>
 
       
-        <!-- <h2 class="mb-3">新規掲載店</h2>
+        <!-- <h2 class="mb-3">新規掲載商品</h2>
         <div class="row row-cols-xl-6 row-cols-md-3 row-cols-2 g-3 mb-5">
             @foreach ($new_products as $new_product)
                 <div class="col">

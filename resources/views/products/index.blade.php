@@ -6,14 +6,14 @@
             <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">店舗一覧</li>
+                    <li class="breadcrumb-item active" aria-current="page">商品一覧</li>
                 </ol>
             </nav>
 
             <div class="col-xl-3 col-lg-4 col-md-12">
                 <form method="GET" action="{{ route('products.index') }}" class="w-100 mb-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="店舗名・エリア・カテゴリ" name="keyword" value="{{ $keyword }}">
+                        <input type="text" class="form-control" placeholder="商品名・カテゴリ" name="keyword" value="{{ $keyword }}">
                         <button type="submit" class="btn text-white shadow-sm ohanami-btn">検索</button>
                     </div>
                 </form>
@@ -73,7 +73,7 @@
             <div class="col">
                 <div class="d-flex justify-content-between flex-wrap">
                     <p class="fs-5 mb-3">
-                        {{ number_format($total) }}件の店舗が見つかりました
+                        {{ number_format($total) }}件の商品が見つかりました
                         <span class="fs-6">
                             @if ($total > 15)
                                 （{{ 15 * $products->currentPage() - 14 }}～{{ 15 * $products->currentPage() }}件）

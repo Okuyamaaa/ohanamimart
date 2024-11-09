@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- 店舗の削除用モーダル -->
+    <!--　商品の削除用モーダル -->
     <div class="modal fade" id="deleteRestaurantModal" tabindex="-1" aria-labelledby="deleteRestaurantModalLabel">
         <div class="modal-dialog">
             <div class="modal-content">
