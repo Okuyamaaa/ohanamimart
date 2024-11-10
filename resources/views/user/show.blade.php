@@ -32,7 +32,7 @@
                     </ol>
                 </nav>
 
-                <h1 class="mb-4 text-center">{{ $user->name }}</h1>
+                <h1 class="mb-4 text-center">{{ $user->name }}さんのページ</h1>
 
                 <div class="container mb-4">
 

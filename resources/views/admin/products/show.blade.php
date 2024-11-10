@@ -66,6 +66,16 @@
 
                     <div class="row pb-2 mb-2 border-bottom">
                         <div class="col-2">
+                            <span class="fw-bold">出品者</span>
+                        </div>
+
+                        <div class="col">
+                            <a href="{{route('admin.users.show', [$product->user_id])}}">{{ $product->user->name }}</a>
+                        </div>
+                    </div>
+
+                    <div class="row pb-2 mb-2 border-bottom">
+                        <div class="col-2">
                             <span class="fw-bold">商品名</span>
                         </div>
 

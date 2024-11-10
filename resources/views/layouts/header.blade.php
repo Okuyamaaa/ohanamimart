@@ -67,7 +67,7 @@
                                 <a class="dropdown-item" href="{{ route('user.index') }}">会員情報</a>
 
                                 
-                                    <a class="dropdown-item" href="{{ route('favorites.index') }}">お気に入り一覧</a>
+                                    <a class="dropdown-item" href="{{ route('favorites.index') }}">いいね！一覧</a>
                                     <a class="dropdown-item" href="{{ route('cart.index')}}">カート一覧</a>
                                     <a class="dropdown-item" href="{{ route('checkout.purchased') }}">注文履歴</a>
                                     <a class="dropdown-item" href="{{ route('products.create') }}">出品する</a>

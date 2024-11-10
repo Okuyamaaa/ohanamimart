@@ -30,6 +30,7 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">出品者</th>
                             <th scope="col">商品名</th>
                             <th scope="col">価格</th>
                             <th scope="col"></th>
@@ -39,6 +40,7 @@
                         @foreach($products as $product)
                             <tr>
                                 <td>{{ $product->id }}</td>
+                                <td><a href="{{route('admin.users.show', [$product->user_id])}}">{{ $product->user->name }}</a></td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td><a href="{{ route('admin.products.show', $product) }}">詳細</a></td>

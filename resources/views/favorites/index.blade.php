@@ -30,11 +30,11 @@
                 <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">ホーム</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">お気に入り一覧</li>
+                        <li class="breadcrumb-item active" aria-current="page">いいね！一覧</li>
                     </ol>
                 </nav>
 
-                <h1 class="mb-3 text-center">お気に入り一覧</h1>
+                <h1 class="mb-3 text-center">いいね！一覧</h1>
 
                 @if (session('flash_message'))
                     <div class="alert alert-info" role="alert">
