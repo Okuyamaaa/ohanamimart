@@ -171,7 +171,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if($product->user_id == Auth::id()){
         $product->delete();
+        } else {
+            return to_route('products.index')->with('error_message', '不正なアクセスです。');
+        }
         return to_route('products.index')->with('flash_message', '商品を削除しました。');
     }
 

@@ -267,6 +267,8 @@ class ProductTest extends TestCase
             'price' => 100,
             'user_id' => $user->id
         ];
+        
+        // Log::info($product_array);
             
             $response = $this->actingAs($otherUser)->delete(route('products.destroy', ['product' => $product->id]));
             $this->assertDatabaseHas('products', $product_array);
@@ -288,7 +290,7 @@ class ProductTest extends TestCase
             'price' => 100,
             'user_id' => $user->id
         ];
-
+        // Log::info($product_array);
         $response = $this->actingAs($user)->delete(route('products.destroy', ['product' => $product->id]));
 
         $this->assertDatabaseMissing('products', $product_array);
